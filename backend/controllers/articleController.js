@@ -15,6 +15,29 @@ const getArticles = async (req, res) => {
     }
 }
 
+const createArticle = async (req, res) => {
+
+    const { name, price, desc } = req.body
+
+    try {
+        const article = await Article.create({
+            name,
+            price,
+            desc
+        })
+
+        return res.status(200).json({
+            article
+        })
+    }
+    catch(err) {
+        return res.status(500).json({
+            err
+        })
+    }
+}
+
 module.exports = {
-    getArticles
+    getArticles,
+    createArticle
 }
