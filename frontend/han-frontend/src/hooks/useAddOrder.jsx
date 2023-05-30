@@ -3,6 +3,8 @@ import axios from 'axios'
 import { useArticleContext } from "./useArticles"
 import { useOrders } from "./useOrders"
 
+import { toast } from "react-toastify"
+
 export const useCreateOrder = () => {
     const [ error, setError ] = useState(null)
     const [ loading, setLoading ] = useState(false)
@@ -14,11 +16,15 @@ export const useCreateOrder = () => {
         setLoading(true)
 
         try {
+            console.log(articles);
             const res = await axios.post(`${URL}/orders`, {
-                articles,              
+                articles: articles.map( e => {
+                    return { articleId: e.article._id, quantity: e.quantity }
+                } )              
             })
-
+            console.log(res.data.order);
             addOrder(res.data)
+            toast("Successfully created")
         }
 
         catch(err) {

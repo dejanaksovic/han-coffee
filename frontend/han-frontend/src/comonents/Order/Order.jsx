@@ -1,24 +1,29 @@
-import { useEffect, useState } from 'react';
 import { useArticleContext } from '../../hooks/useArticles';
 import './Order.css'
+import { useGetOrders } from '../../hooks/useGetOrders';
 
 import Article from '../Article/Article';
 
 const Order = ({ order }) => {
 
     const { articles } = useArticleContext()
-    
-    useEffect( () => {
-        console.log("Artikli", articles);
-        if(!articles)
-        return
-        articles.forEach( e =>{
-            console.log(`${e._id}\n${order.articles[0]._id}\n${e._id.toString() == order.articles[0]._id.toString()}`);
-        } )
-    }, articles)
+    const { getOrders } = useGetOrders()
+
+   
 
     return ( 
         <div className="order-container">
+            { order && articles && order.articles ? 
+                order.articles.map( article => {
+                    return (  <Article key={article._id} article={ articles.find( e => e._id === article.articleId ) }/>)
+                } ) :
+            null
+            }
+
+            { !order.done  ? 
+                <button> Zavrsi porudzbinu </button> :
+                null
+            }
             
         </div>
      );

@@ -13,9 +13,10 @@ const Article = ({article, func}) => {
             <h3>{article.name}</h3>
             <h2>{article.price}</h2>
             <p>{article.desc}</p>
-            <button onClick={
+            {func ? <button onClick={
                 handleClick
-             }>Stavi u korpu</button>
+             }>Stavi u korpu</button> : 
+             null}
         </>
      );
 }

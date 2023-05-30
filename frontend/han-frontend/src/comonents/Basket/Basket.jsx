@@ -2,6 +2,7 @@ import { useState } from "react";
 import './Basket.css'
 import { useCart } from "../../hooks/useCart";
 import { useCreateOrder } from "../../hooks/useAddOrder";
+import { ToastContainer } from "react-toastify"
 
 const Basket = ({ addToBasket }) => {
 
@@ -29,6 +30,7 @@ const Basket = ({ addToBasket }) => {
                 createOrder(items)
             } } 
             >ORDER</button>
+            <ToastContainer />
         </div>
         </>
      );
