@@ -9,9 +9,7 @@ export const useGetArticles = () => {
     const [ loading, setLoading ] = useState(false)
 
     const getArticles = async () => {
-        console.log("API TRIGGERED");
         setLoading(true)
-        console.log(`URL: ${URL}`);
 
         try {
             const { data: {articles} } = await axios.get(`${URL}/articles`)

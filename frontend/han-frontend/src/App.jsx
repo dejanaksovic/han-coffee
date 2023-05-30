@@ -1,16 +1,22 @@
 import './App.css'
 
+// PAGES
 import Articles from './pages/Articles/Articles'
-import Basket from './comonents/Basket/Basket'
+
+// LAYOUTS
+import MainRouteLayout from './layouts/MainRouteLayout'
+
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom'
 
 import ArticleContextProvider from './contexts/articleContext'
+import CartContextProvider from './contexts/cartContext'
+import OrderContextProvider from './contexts/orderContext'
 
 // CONTEXTS
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-  <Route>
+  <Route element = { <MainRouteLayout/>}>
     <Route path='/articles' element = { <Articles/> }/>
   </Route>
   )
@@ -21,8 +27,11 @@ function App() {
   return (
     <>
       <ArticleContextProvider>
-        <RouterProvider router={ router }/>
-        <Basket />
+        <CartContextProvider>
+          <OrderContextProvider>
+            <RouterProvider router={ router }/>
+          </OrderContextProvider>
+        </CartContextProvider>
       </ArticleContextProvider>
     </>
   )

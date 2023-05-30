@@ -1,19 +1,36 @@
 import { useState } from "react";
+import './Basket.css'
+import { useCart } from "../../hooks/useCart";
+import { useCreateOrder } from "../../hooks/useAddOrder";
 
 const Basket = ({ addToBasket }) => {
 
-    const [items, setItems] = useState([{article: {name: "Test", price: 10}, quantity: 10}])
+    const [show, setShow] = useState(true);
+    const {items} = useCart()
+
+    const { error, loading, createOrder } = useCreateOrder()
 
     return ( 
-        <div>
+        <>
+        <button onClick={ () => {
+                setShow((show) => {
+                    return !show
+                })
+            } }>X</button>
+            <div style={ { display: show ? "block" : "none" } } className="cart-container">
             <h1>KORPA</h1>
             { items.length > 0 &&
                 items.map( (e, i) => {
                     return <p key={i}> {e.article.name} {e.quantity} {e.quantity * e.article.price} </p>
                 } )
             }
-            <button>ORDER</button>
+            <button disabled = {loading}
+            onClick = { () => {
+                createOrder(items)
+            } } 
+            >ORDER</button>
         </div>
+        </>
      );
 }
  

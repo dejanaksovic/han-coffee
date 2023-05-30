@@ -1,17 +1,21 @@
 import Basket from "../Basket/Basket";
 
-const Article = ({name, price, desc, func}) => {
+const Article = ({article, func}) => {
 
-    const handleClick = (info) => {
-        func(info)
+    const handleClick = () => {
+        func(
+            article
+        )
     }
 
     return ( 
         <>
-            <h3>{name}</h3>
-            <h2>{price}</h2>
-            <p>{desc}</p>
-            <button onClick={ func }>Stavi u korpu</button>
+            <h3>{article.name}</h3>
+            <h2>{article.price}</h2>
+            <p>{article.desc}</p>
+            <button onClick={
+                handleClick
+             }>Stavi u korpu</button>
         </>
      );
 }
