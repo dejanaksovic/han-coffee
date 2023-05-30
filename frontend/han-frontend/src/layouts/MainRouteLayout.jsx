@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Basket from "../comonents/Basket/Basket";
+import Navbar from "../comonents/Navbar/Navbar";
 
 const MainRouteLayout = () => {
     return ( 
         <>
-            <h1>Main layout</h1>
+            <Navbar />
             <main>
                 <Outlet />
                 <Basket/>   

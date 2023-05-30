@@ -13,7 +13,7 @@ const OrderContextProvider = ({ children }) => {
     }
 
     return ( 
-        <orderContext.Provider value={ {setOrders, addOrder} }>
+        <orderContext.Provider value={ {setOrders, addOrder, orders} }>
             {children}
         </orderContext.Provider>  
      );

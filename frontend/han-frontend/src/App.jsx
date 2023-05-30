@@ -2,6 +2,7 @@ import './App.css'
 
 // PAGES
 import Articles from './pages/Articles/Articles'
+import Orders from './pages/Orders/Orders'
 
 // LAYOUTS
 import MainRouteLayout from './layouts/MainRouteLayout'
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
   <Route element = { <MainRouteLayout/>}>
     <Route path='/articles' element = { <Articles/> }/>
+    <Route path='/orders' element = { <Orders/> }/>
   </Route>
   )
 )

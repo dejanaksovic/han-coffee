@@ -1,0 +1,12 @@
+.main-nav {
+    list-style-type: none;
+    display: flex;
+    position: absolute;
+    top: 0;
+    gap: 1rem;
+}
+
+.main-nav li:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
