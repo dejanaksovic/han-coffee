@@ -3,13 +3,17 @@ import './Order.css'
 import { useGetOrders } from '../../hooks/useGetOrders';
 
 import Article from '../Article/Article';
+import { useSetOrderDone } from '../../hooks/useSetOrderDone';
 
 const Order = ({ order }) => {
 
     const { articles } = useArticleContext()
     const { getOrders } = useGetOrders()
-
+    const { loading, error, setDone } = useSetOrderDone()
    
+    const handleClick = () => {
+        setDone(order._id)
+    }
 
     return ( 
         <div className="order-container">
@@ -21,7 +25,7 @@ const Order = ({ order }) => {
             }
 
             { !order.done  ? 
-                <button> Zavrsi porudzbinu </button> :
+                <button disabled = { loading } onClick={ handleClick }> Zavrsi porudzbinu </button> :
                 null
             }
             

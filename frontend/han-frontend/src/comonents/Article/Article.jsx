@@ -1,4 +1,4 @@
-import Basket from "../Basket/Basket";
+import './Article.css'
 
 const Article = ({article, func}) => {
 
@@ -9,7 +9,7 @@ const Article = ({article, func}) => {
     }
 
     return ( 
-        <>
+        <div className="article-container">
             <h3>{article.name}</h3>
             <h2>{article.price}</h2>
             <p>{article.desc}</p>
@@ -17,7 +17,7 @@ const Article = ({article, func}) => {
                 handleClick
              }>Stavi u korpu</button> : 
              null}
-        </>
+        </div>
      );
 }
  

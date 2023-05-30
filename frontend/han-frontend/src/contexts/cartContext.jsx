@@ -18,7 +18,7 @@ const CartContextProvider = ({children}) => {
 
             return [ ...items.filter( e => e.article._id !== item._id ), {...found,  quantity: found.quantity + 1}]
         } )
-    } 
+    }
     
     return (
         <cartContext.Provider value={ {addItem, items} }>
