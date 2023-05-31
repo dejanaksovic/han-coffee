@@ -3,30 +3,25 @@ import { useState } from "react"
 import { useArticleContext } from "./useArticles"
 import { useAuthContext } from "./useAuthContext"
 
-export const useCreateArticle = () => {
-    const [ error, setError ] = useState()
-    const [ loading, setLoading ] = useState()
-    
-    const { URL, addArticle } = useArticleContext()
-
+export const useRegister = () => {
+    const [error, setError] = useState()
+    const [loading, setLoading] = useState(false)
+    const { URL } = useArticleContext()
     const { user } = useAuthContext()
 
-    const createArticle = async (name, price, desc) => {
+    const register = async (name, email, password, role) => {
         setLoading(true)
         try {
-            const res = await axios.post(`${URL}/articles`, {
+            const res = axios.post(`${URL}/users`, {
                 name,
-                price,
-                desc,
+                email,
+                password,
+                role,
             }, {
                 headers: {
                     Authorization: `Bearer ${user.token}`
                 }
             })
-
-            console.log(res);
-            addArticle(res.data.article)
-
         }
 
         catch(err) {
@@ -36,5 +31,5 @@ export const useCreateArticle = () => {
         setLoading(false)
     }
 
-    return { error, loading, createArticle }
+    return { error, loading, register }
 }
