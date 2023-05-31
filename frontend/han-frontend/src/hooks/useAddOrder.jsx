@@ -3,8 +3,6 @@ import axios from 'axios'
 import { useArticleContext } from "./useArticles"
 import { useOrders } from "./useOrders"
 
-import { toast } from "react-toastify"
-
 export const useCreateOrder = () => {
     const [ error, setError ] = useState(null)
     const [ loading, setLoading ] = useState(false)
@@ -24,7 +22,6 @@ export const useCreateOrder = () => {
             })
             console.log(res.data.order);
             addOrder(res.data)
-            toast("Successfully created")
         }
 
         catch(err) {

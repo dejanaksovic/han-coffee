@@ -12,6 +12,7 @@ import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } 
 import ArticleContextProvider from './contexts/articleContext'
 import CartContextProvider from './contexts/cartContext'
 import OrderContextProvider from './contexts/orderContext'
+import CreateArticle from './pages/CreateArticle/CreateArticle'
 
 // CONTEXTS
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
   <Route element = { <MainRouteLayout/>}>
     <Route path='/articles' element = { <Articles/> }/>
     <Route path='/orders' element = { <Orders/> }/>
+    <Route path='/articles/create' element = { <CreateArticle/> } />
   </Route>
   )
 )
