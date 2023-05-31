@@ -1,6 +1,5 @@
 import { useArticleContext } from '../../hooks/useArticles';
 import './Order.css'
-import { useGetOrders } from '../../hooks/useGetOrders';
 
 import Article from '../Article/Article';
 import { useSetOrderDone } from '../../hooks/useSetOrderDone';
@@ -8,7 +7,6 @@ import { useSetOrderDone } from '../../hooks/useSetOrderDone';
 const Order = ({ order }) => {
 
     const { articles } = useArticleContext()
-    const { getOrders } = useGetOrders()
     const { loading, error, setDone } = useSetOrderDone()
    
     const handleClick = () => {

@@ -2,12 +2,11 @@ import { useState } from "react";
 import './Basket.css'
 import { useCart } from "../../hooks/useCart";
 import { useCreateOrder } from "../../hooks/useAddOrder";
-import { ToastContainer } from "react-toastify"
 
 const Basket = ({ addToBasket }) => {
 
     const [show, setShow] = useState(true);
-    const {items} = useCart()
+    const { items, emptyBasket } = useCart()
 
     const { error, loading, createOrder } = useCreateOrder()
 
@@ -28,9 +27,9 @@ const Basket = ({ addToBasket }) => {
             <button disabled = {loading}
             onClick = { () => {
                 createOrder(items)
+                emptyBasket()
             } } 
             >ORDER</button>
-            <ToastContainer />
         </div>
         </>
      );
