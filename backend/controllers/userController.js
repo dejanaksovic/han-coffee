@@ -6,12 +6,12 @@ require('dotenv').config()
 const createUser = async (req, res) => {
     const { name, role, password, email } = req.body
 
-    if(!name || !role || !password)
+    if(!name || !email || !password)
         return res.status(400).json({
             err: "Korisnik mora imati sva neophodna polja"
         })
 
-    if(!(["ADMIN", "WORKER", "USER"].includes(role.toUpperCase()))){
+    if(role && !(["ADMIN", "WORKER", "USER"].includes(role.toUpperCase()))){
         console.log(role.toUpperCase());
         return res.status(400).json({
             err:"Invalid role for the user",

@@ -1,5 +1,7 @@
 const Order = require('../models/Order')
 
+let globalNumber = 0
+
 const getOrders = async (req, res) => {
 
     try {
@@ -29,8 +31,10 @@ const createOrder = async(req, res) => {
         })
     
         try {
+            globalNumber = (globalNumber+1) % 100 
             const order = await Order.create({
-            articles
+            articles,
+            number: globalNumber,
         }) 
 
         return res.status(200).json({
@@ -38,6 +42,7 @@ const createOrder = async(req, res) => {
         })}
 
         catch(err) {
+            console.log(err);
             return res.status(500).json({
                 err,
             })
