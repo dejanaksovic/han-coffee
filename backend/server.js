@@ -1,10 +1,17 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const fileUpload = require('express-fileupload')
 
 const Connect = require('./config/db')
 Connect()
+
+app.use(express.static('images'))
+
 app.use(cors())
+app.use(fileUpload({
+    createParentPath: true,
+}))
 app.use(express.json())
 app.use(express.urlencoded())
 
