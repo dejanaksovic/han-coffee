@@ -1,5 +1,4 @@
 const Article = require('../models/Article')
-const fs = require('fs')
 
 const getArticles = async (req, res) => {
     try {
@@ -35,9 +34,7 @@ const createArticle = async (req, res) => {
             url: image.name
         })
 
-        image.mv(`../images/${image.name}`, (err) => {
-            console.log(err);
-        })
+        image.mv(`images/${image.name}`)
 
         return res.status(200).json({
             article,
