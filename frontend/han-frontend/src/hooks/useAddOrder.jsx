@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useArticleContext } from "./useArticles"
 import { useOrders } from "./useOrders"
 import { useAuthContext } from "./useAuthContext"
+import { toast } from "react-toastify"
 
 export const useCreateOrder = () => {
     const [ error, setError ] = useState(null)
@@ -27,6 +28,7 @@ export const useCreateOrder = () => {
             })
             console.log(res.data.order);
             addOrder(res.data)
+            toast(`Vasa porudzbina je prosla sa brojem ${res.data.order.number}`)
         }
 
         catch(err) {

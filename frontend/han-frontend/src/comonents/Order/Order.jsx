@@ -15,6 +15,7 @@ const Order = ({ order }) => {
 
     return ( 
         <div className="order-container">
+            <h3>Broj porudz: {order.number}</h3>
             { order && articles && order.articles ? 
                 order.articles.map( article => {
                     return (  <Article key={article._id} article={ articles.find( e => e._id === article.articleId ) }/>)

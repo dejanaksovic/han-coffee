@@ -7,10 +7,12 @@ const CreateArticleForm = () => {
     const [price, setPrice] = useState()
     const [desc, setDesc] = useState()
 
+    const [image, setImage] = useState()
+
     const { error, loading, createArticle } = useCreateArticle()
 
     return ( 
-        <div>
+        <div style={ {marginTop: '100px'} } >
             <form>
                 <div className="form-group">
                     <label htmlFor="name">Ime artikla</label>
@@ -30,9 +32,16 @@ const CreateArticleForm = () => {
                         setDesc(e.target.value)
                     } }  type="text" id = "desc"/>
                 </div>
+                <div className="form-group">
+                    <label htmlFor="image">Slika</label>
+                    <input type="file" name="image" encType = "multipart/form-data" onChange={(e) => {
+                        setImage(e.target.files[0])
+                        console.log(e.target.files[0])
+                    } }/>
+                </div>
                 <button disabled = { loading } onClick={(e) => {
                     e.preventDefault()
-                    createArticle(name, price, desc)
+                    createArticle(name, price, desc, image)
                 }}>Dodaj artikal</button>
             </form>
         </div>

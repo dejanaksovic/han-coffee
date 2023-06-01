@@ -5,19 +5,14 @@ import { useCreateOrder } from "../../hooks/useAddOrder";
 
 const Basket = ({ addToBasket }) => {
 
-    const [show, setShow] = useState(true);
+    const { shown } = useCart()
     const { items, emptyBasket } = useCart()
 
     const { error, loading, createOrder } = useCreateOrder()
 
     return ( 
         <>
-        <button onClick={ () => {
-                setShow((show) => {
-                    return !show
-                })
-            } }>X</button>
-            <div style={ { display: show ? "block" : "none" } } className="cart-container">
+            <div style={ { display: shown ? "block" : "none" } } className="cart-container">
             <h1>KORPA</h1>
             { items.length > 0 &&
                 items.map( (e, i) => {

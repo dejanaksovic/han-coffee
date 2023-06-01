@@ -1,9 +1,11 @@
 import './Article.css'
-import { Card, CardContent, CardHeader, CardMedia, CardActionArea } from "@mui/material"
-import { Typography } from '@mui/material'
-import { Button } from '@mui/material'
+import { Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
+import { AddShoppingCartOutlined, Favorite, FavoriteBorder, Share } from '@mui/icons-material';
+import { useArticleContext } from '../../hooks/useArticles';
 
 const Article = ({article, func}) => {
+
+    const { URL } = useArticleContext()
 
     const handleClick = () => {
         func(
@@ -12,23 +14,31 @@ const Article = ({article, func}) => {
     }
 
     return ( 
-            <Card >
-                <CardHeader 
-                    title = {article.name}
-                    subheader = { article.price + 'din' }/>
-                <CardContent>
-                <CardMedia
-                    component = { "img" }
-                    image={'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/flat-white-3402c4f.jpg?quality=90&webp=true&resize=300,272'}/>
-                    <p>{article.desc}</p>
-                </CardContent>
-                <CardActionArea>
-                {func ? <Button color = 'primary' variant = 'contained' onClick={
-                        handleClick
-                     }>Stavi u korpu</Button> :
-                     null}
-                </CardActionArea>
-            </Card>
+        <Card sx = { {maxWidth: '50%', margin: '0 auto'} }>
+        <CardHeader
+          title = { article.name }
+          subheader={article.price}
+        />
+        <CardMedia
+          component="img"
+          height="194"
+          image={ `${URL}/${article.url}` }
+          alt="Paella dish"
+        />
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            {article.desc}
+          </Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites" onClick = {(e) => {
+            console.log(article)
+            handleClick()
+          }}>
+            <AddShoppingCartOutlined/>
+          </IconButton>
+        </CardActions>
+      </Card>
      );
 }
  

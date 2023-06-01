@@ -5,6 +5,8 @@ const cartContext = createContext()
 const CartContextProvider = ({children}) => {
     const [ items, setItems ] = useState([])
 
+    const [shown, setShown] = useState(false)
+
     const addItem = (item) => {
         setItems( (items) => {
             console.log("Stize", item);
@@ -25,7 +27,7 @@ const CartContextProvider = ({children}) => {
     }
     
     return (
-        <cartContext.Provider value={ {addItem, items, emptyBasket} }>
+        <cartContext.Provider value={ {addItem, items, emptyBasket, shown, setShown} }>
             { children }
         </cartContext.Provider>
     )

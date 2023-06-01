@@ -9,7 +9,7 @@ const LoginForm = () => {
     const [ password, setPassword ] = useState()
 
     return ( 
-        <div>
+        <div style={ { marginTop: '200px' } }>
             <form>
                 <div className="form-group">
                     <label htmlFor="email">Email:</label>

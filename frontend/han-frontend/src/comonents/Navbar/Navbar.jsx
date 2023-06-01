@@ -1,6 +1,6 @@
+import { SearchOutlined } from '@mui/icons-material';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { AppBar, Toolbar, Avatar, Input, Box} from '@mui/material';
-import SearchIcon from "@mui/icons-material/Search";
 
 const Navbar = () => {
 
@@ -8,13 +8,12 @@ const Navbar = () => {
     console.log(user);
 
     return ( <>
-        <nav style={ { position: 'sticky', zIndex: '20' } }>
+        <nav>
             <AppBar>
                 <Toolbar sx = {{ display: 'flex', justifyContent: 'space-between'}} >
                     <Avatar src = "src/assets/images/Hancoffee logo.jpg"/>
-                    <Box sx = { {backgroundColor: 'white', borderRadius: '.5rem', flexBasis: '30%'}}>
-                        <SearchIcon/>
-                        <Input />
+                    <Box sx = { {backgroundColor: 'white', borderRadius: '.5rem', flexGrow: .5}}>
+                        <Input sx = { {width: '100%'} } />
                     </Box>
                     <Avatar /> 
                 </Toolbar>

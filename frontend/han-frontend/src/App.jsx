@@ -6,6 +6,9 @@ import Orders from './pages/Orders/Orders'
 import Login from './pages/Login/Login'
 import CreateArticle from './pages/CreateArticle/CreateArticle'
 
+// COMPONENTS
+import { ToastContainer } from "react-toastify"
+
 // LAYOUTS
 import MainRouteLayout from './layouts/MainRouteLayout'
 
@@ -44,6 +47,7 @@ function App() {
           </CartContextProvider>
         </ArticleContextProvider>
       </AuthContextProvider>
+      <ToastContainer/>
     </>
   )
 }
