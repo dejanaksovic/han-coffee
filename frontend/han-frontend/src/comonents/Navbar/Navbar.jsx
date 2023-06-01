@@ -1,6 +1,6 @@
 import { useAuthContext } from '../../hooks/useAuthContext';
-import './Navbar.css'
-import { NavLink } from 'react-router-dom';
+import { AppBar, Toolbar, Avatar, Input, Box} from '@mui/material';
+import SearchIcon from "@mui/icons-material/Search";
 
 const Navbar = () => {
 
@@ -8,24 +8,17 @@ const Navbar = () => {
     console.log(user);
 
     return ( <>
-        <nav>
-            <ul className='main-nav'>
-                <li>
-                    <NavLink to={'/articles'}>Artikli</NavLink>
-                </li>
-                <li>
-                    <NavLink to={'/orders'}>Porudzbine</NavLink>
-                </li>
-                <li>
-                    <NavLink to={'/articles/create'}> Kreiraj artikal </NavLink>
-                </li>
-                <li>
-                    <NavLink to={'/register'}>Registruj se</NavLink>
-                </li>
-                <li>
-                    <NavLink to={'/login'}>LOGIN</NavLink>
-                </li>
-            </ul>
+        <nav style={ { position: 'sticky', zIndex: '20' } }>
+            <AppBar>
+                <Toolbar sx = {{ display: 'flex', justifyContent: 'space-between'}} >
+                    <Avatar src = "src/assets/images/Hancoffee logo.jpg"/>
+                    <Box sx = { {backgroundColor: 'white', borderRadius: '.5rem', flexBasis: '30%'}}>
+                        <SearchIcon/>
+                        <Input />
+                    </Box>
+                    <Avatar /> 
+                </Toolbar>
+            </AppBar>
         </nav>
     </> );
 }
