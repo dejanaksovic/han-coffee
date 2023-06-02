@@ -11,6 +11,8 @@ const Navbar = () => {
     const [ el, setEl ] = useState(null)
     const [ open, setOpen ] = useState(false)
 
+    const { logout } = useAuthContext()
+
     const navigate = useNavigate()
 
     console.log(user);
@@ -59,7 +61,10 @@ const Navbar = () => {
                         } } >Prijavite se</MenuItem> :
                         null }
                         { user ?
-                        <MenuItem >Izlogujte se</MenuItem> :
+                        <MenuItem onClick = { () => {
+                            logout()
+                            setOpen(false)
+                        } } >Izlogujte se</MenuItem> :
                         null }
                     </Menu>
             </AppBar>
