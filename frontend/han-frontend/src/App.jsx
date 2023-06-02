@@ -5,6 +5,7 @@ import Articles from './pages/Articles/Articles'
 import Orders from './pages/Orders/Orders'
 import Login from './pages/Login/Login'
 import CreateArticle from './pages/CreateArticle/CreateArticle'
+import Register from './pages/Register/Register'
 
 // COMPONENTS
 import { ToastContainer } from "react-toastify"
@@ -18,7 +19,7 @@ import AuthContextProvider from './contexts/authContext'
 import ArticleContextProvider from './contexts/articleContext'
 import CartContextProvider from './contexts/cartContext'
 import OrderContextProvider from './contexts/orderContext'
-import Register from './pages/Register/Register'
+import GlobalNotificationsContextProvider from './contexts/globalNotificationsContext'
 
 // CONTEXTS
 
@@ -42,7 +43,9 @@ function App() {
         <ArticleContextProvider>
           <CartContextProvider>
             <OrderContextProvider>
-              <RouterProvider router={ router }/>
+              <GlobalNotificationsContextProvider>
+                <RouterProvider router={ router }/>
+              </GlobalNotificationsContextProvider>
             </OrderContextProvider>
           </CartContextProvider>
         </ArticleContextProvider>

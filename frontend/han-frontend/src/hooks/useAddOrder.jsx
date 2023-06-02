@@ -3,14 +3,14 @@ import axios from 'axios'
 import { useArticleContext } from "./useArticles"
 import { useOrders } from "./useOrders"
 import { useAuthContext } from "./useAuthContext"
-import { toast } from "react-toastify"
+import { useGlobalNotificationContext } from "./useGlobalNorificationContext"
 
 export const useCreateOrder = () => {
-    const [ error, setError ] = useState(null)
     const [ loading, setLoading ] = useState(false)
     const { URL } = useArticleContext()
     const { addOrder } = useOrders()
     const { user } = useAuthContext()
+    const { setAlert } = useGlobalNotificationContext()
 
     const createOrder = async (articles) => {
 
@@ -26,16 +26,30 @@ export const useCreateOrder = () => {
                     Authorization: `Bearer ${user.token}`
                 }
             })
-            console.log(res.data.order);
             addOrder(res.data)
-            toast(`Vasa porudzbina je prosla sa brojem ${res.data.order.number}`)
+            setAlert( {
+                severity: 'success',
+                message: `Uspesno poslata porudzbina, broj porudzbine je\n${res.data.order.number}`,
+            } )
         }
 
         catch(err) {
             console.log(err);
+            if(err.response) {
+                setAlert({
+                    severity: 'error',
+                    message: err.response.data.err
+                })
+            }
+            else {
+                setStatus({
+                    severity: 'error',
+                    message: 'Doslo je do greske, proverite vasu internet konekciju i pokusajte ponovo'
+                })
+            }
         }
         
         setLoading(false)
     }
-    return { error, loading, createOrder }
+    return { loading, createOrder }
 }

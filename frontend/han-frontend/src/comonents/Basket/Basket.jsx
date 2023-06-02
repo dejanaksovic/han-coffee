@@ -6,10 +6,8 @@ import { useEffect } from 'react';
 import CartItem from '../CartItem/CartItem';
 
 const Basket = () => {
-    const { shown } = useCart()
-    const { items } = useCart()
-
-    const { error, loading, createOrder } = useCreateOrder()
+    const { shown, items, emptyBasket } = useCart()
+    const { loading, createOrder } = useCreateOrder()
 
     useEffect( () => {
         console.log(items)
@@ -55,12 +53,13 @@ const Basket = () => {
                 }
                 }
                 onClick = { e => {
-                    createOrder()
+                    createOrder(items)
+                    emptyBasket()
                 } }
         >
             Poruci
         </Button>
-}
+        }       
       </Drawer>
         </>
      );
