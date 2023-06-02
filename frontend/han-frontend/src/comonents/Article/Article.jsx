@@ -1,6 +1,6 @@
 import './Article.css'
 import { Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
-import { AddShoppingCartOutlined, Favorite, FavoriteBorder, Share } from '@mui/icons-material';
+import { AddShoppingCartOutlined } from '@mui/icons-material';
 import { useArticleContext } from '../../hooks/useArticles';
 
 const Article = ({article, func}) => {
@@ -17,13 +17,13 @@ const Article = ({article, func}) => {
         <Card sx = { {maxWidth: '50%', margin: '0 auto'} }>
         <CardHeader
           title = { article.name }
-          subheader={article.price}
+          subheader={article.price+'din'}
         />
         <CardMedia
           component="img"
           height="194"
           image={ `${URL}/${article.url}` }
-          alt="Paella dish"
+          alt={ article.name }
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
