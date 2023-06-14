@@ -1,8 +1,11 @@
+import "./Navbar.css"
+
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import { AppBar, Toolbar, Avatar, Input, Box, Menu, MenuItem} from '@mui/material';
+import { AppBar, Toolbar, Avatar, Input, Box, MenuItem, IconButton} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { Menu } from '@mui/icons-material';
 
 const Navbar = () => {
 
@@ -19,54 +22,15 @@ const Navbar = () => {
 
     return ( <>
         <nav>
-            <AppBar sx = {{position: 'static'}}>
+            <AppBar sx = {{position: 'static',
+                          backgroundColor: 'secondary.main'}}>
                 <Toolbar sx = {{ display: 'flex', justifyContent: 'space-between'}} >
-                    <NavLink to = {'/articles'}>
-                        <Avatar src = "src\assets\images\Hancoffee logo.jpg"/>
-                    </NavLink>
-                    <Box sx = { {backgroundColor: 'white', borderRadius: '.5rem', flexGrow: .5}}>
-                        <Input sx = { {width: '100%'} } />
-                    </Box>
-                    <Avatar
-                        sx = {{
-                            cursor: 'pointer',
-                        }}
-                        onClick = { (e) => {
-                        setEl(e.target)
-                        setOpen(true)
-                    } } />
+                    <Avatar className = 'logo' src="src/assets/images/han-logo.jpg"/>
+                    <IconButton>
+                        <Menu color='neutral'/>
+                    </IconButton>
                 </Toolbar>
-                <Menu
-                    id = "user-menu"
-                    anchorEl={ el }
-                    open = { open }
-                    onClose={() => {
-                        setOpen(false)
-                    }}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left'
-                    }}
-                    >
-                        { !user ?
-                        <MenuItem onClick = { () => {
-                            navigate('/login')
-                            setOpen(false)
-                        } } >Ulogujte se</MenuItem> :
-                        null }
-                        { !user ?
-                        <MenuItem onClick = { () => {
-                            navigate('/login')
-                            setOpen(false)
-                        } } >Prijavite se</MenuItem> :
-                        null }
-                        { user ?
-                        <MenuItem onClick = { () => {
-                            logout()
-                            setOpen(false)
-                        } } >Izlogujte se</MenuItem> :
-                        null }
-                    </Menu>
+                
             </AppBar>
         </nav>
     </> );

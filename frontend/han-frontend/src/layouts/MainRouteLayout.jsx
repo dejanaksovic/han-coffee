@@ -1,3 +1,5 @@
+import "./MainRouteLayout.css"
+
 import { Outlet } from "react-router-dom";
 import Basket from "../comonents/Basket/Basket";
 import Navbar from "../comonents/Navbar/Navbar";
@@ -12,22 +14,28 @@ const MainRouteLayout = () => {
     const { setShown } = useCart()
 
     return ( 
-        <>
+        <Box sx = {{
+            minHeight: '100vh',
+        }}>
+            <div className="bg-image"></div>
+            <Fab color = 'secondary'
+                        style = {{
+                            position: 'fixed',
+                            bottom: '30px',
+                            left: '30px',
+                            zIndex: '10000',
+                        }}
+                        onClick={ () => { setShown( (prevState) => !prevState ) }}
+                        >
+                        <ShoppingCart color="neutral"/>
+            </Fab>   
             <Navbar />
-            <main>
+            <main>                   
                 <Outlet />
-                <Basket/>
-                <Box xs = { {position: 'absolute', height: '100vh'} }>
-                    <Fab color = 'primary'
-                    sx = {{ position: 'absolute', zIndex: '3000', bottom: '20px', left: '20px' }}
-                     onClick={ () => { setShown( (prevState) => !prevState ) }}
-                    >
-                        <ShoppingCart />
-                    </Fab>    
-                </Box>
+                <Basket/>    
                 <GlobalNotification />
-            </main>
-        </>
+            </main>            
+        </Box>
      );
 }
  
