@@ -7,6 +7,7 @@ import { useGetArticles } from "../../hooks/useGetArticles";
 import { useArticleContext } from "../../hooks/useArticles";
 
 const Orders = () => {
+    let interval = null
     
     const { orders } = useOrders()
     const { getOrders, loading, error } = useGetOrders()
@@ -19,10 +20,11 @@ const Orders = () => {
     }, [] )
 
     useEffect( () => {
-        setTimeout( () => {
-            getOrders()
-            console.log('refresh');
-        }, 30*1000 )
+        if(!interval)
+            setTimeout( () => {
+                getOrders()
+                console.log('refresh');
+            }, 30*1000 )
     }, [orders] )
 
     return ( 
