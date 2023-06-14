@@ -7,7 +7,7 @@ import { AppBar, Toolbar, Avatar, Input, Box, MenuItem, IconButton} from '@mui/m
 import { useNavigate } from 'react-router-dom';
 import { Menu } from '@mui/icons-material';
 
-const Navbar = () => {
+const Navbar = ({toggleSideNav}) => {
 
     const { user } = useAuthContext()
 
@@ -22,15 +22,16 @@ const Navbar = () => {
 
     return ( <>
         <nav>
-            <AppBar sx = {{position: 'static',
+            <AppBar sx = {{position: 'static',                          
                           backgroundColor: 'secondary.main'}}>
                 <Toolbar sx = {{ display: 'flex', justifyContent: 'space-between'}} >
-                    <Avatar className = 'logo' src="src/assets/images/han-logo.jpg"/>
-                    <IconButton>
+                    <Avatar className = 'logo' src="src/assets/images/han-logo.jpg" />
+                    <IconButton onClick = { () => {
+                        toggleSideNav()
+                    } }>
                         <Menu color='neutral'/>
                     </IconButton>
                 </Toolbar>
-                
             </AppBar>
         </nav>
     </> );
