@@ -15,17 +15,18 @@ const Orders = () => {
     const { articles } = useArticleContext()
 
     useEffect( () => {
-        getOrders()
         getArticles()
+        getOrders()
     }, [] )
 
     useEffect( () => {
-        if(!interval)
-            setTimeout( () => {
-                getOrders()
-                console.log('refresh');
-            }, 30*1000 )
-    }, [orders] )
+        if(interval) // FOR DEVELOPMENT, CHECK IF IT NEEDS TO BE REMOVED IN PRODUCTION
+            return
+        interval = setInterval( () => {
+            getOrders()
+            console.log('refreshing')
+        }, 30000 )
+    }, [] )
 
     return ( 
         <>
