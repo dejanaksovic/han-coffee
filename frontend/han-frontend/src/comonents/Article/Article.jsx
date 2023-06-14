@@ -1,7 +1,7 @@
 import './Article.css'
-import { Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
-import { AddShoppingCartOutlined } from '@mui/icons-material';
+import { Avatar, Box, Typography } from '@mui/material';
 import { useArticleContext } from '../../hooks/useArticles';
+import { NavLink } from 'react-router-dom';
 
 const Article = ({article, func}) => {
 
@@ -14,31 +14,25 @@ const Article = ({article, func}) => {
     }
 
     return ( 
-        <Card sx = { {maxWidth: '50%', margin: '0 auto'} }>
-        <CardHeader
-          title = { article.name }
-          subheader={article.price+'din'}
-        />
-        <CardMedia
-          component="img"
-          height="194"
-          image={ `${URL}/${article.url}` }
-          alt={ article.name }
-        />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            {article.desc}
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites" onClick = {(e) => {
-            console.log(article)
-            handleClick()
+        <NavLink to = {`/articles/${article._id}`}>
+          <Box sx = {{
+            display: 'flex',
+            justifyContent: 'left',
+            gap: '1rem',
+            alignItems:'center'
           }}>
-            <AddShoppingCartOutlined/>
-          </IconButton>
-        </CardActions>
-      </Card>
+            <Avatar src = {`${URL}/${article.url}`} sx = {{
+              width: '20vw',
+              height: '20vw',
+            }}/>
+            <Typography sx = {{
+              color: 'white',
+              fontSize: 24,
+            }}>
+              {article.name}
+            </Typography>
+          </Box>
+        </NavLink>
      );
 }
  
