@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useRegister } from "../../hooks/useRegister";
+import './RegisterForm.css'
+import Logo from "../../assets/images/han-logo-removebg-preview.png"
 
 const RegisterForm = () => {
 
@@ -11,8 +13,12 @@ const RegisterForm = () => {
     const { error, loading, register } = useRegister()
 
     return ( 
-        <div>
-            <form >
+        <div className="form">
+            <form className="formConcent" >
+                <img style={{
+                    width:'150px'
+                }}  src={Logo} alt='Han' />
+                <span className='form-group hedaer'>Uloguj se</span>
                 <div className="form-group">
                     <label htmlFor="name">Ime: </label>
                     <input onChange={( e ) => {
