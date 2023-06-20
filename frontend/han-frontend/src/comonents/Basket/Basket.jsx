@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import CartItem from '../CartItem/CartItem';
 
 const Basket = () => {
-    const { shown, items, emptyBasket } = useCart()
+    const { shown, items, emptyBasket, setShown } = useCart()
     const { loading, createOrder } = useCreateOrder()
 
     useEffect( () => {
@@ -27,9 +27,11 @@ const Basket = () => {
             borderRadius: '0 20px 20px 0'      
           },
         }}
-        variant="persistent"
         anchor="left"
         open={shown}
+        onClose = { () => {
+            setShown(!shown)
+        } }
       >
         <Box
             sx = {{
