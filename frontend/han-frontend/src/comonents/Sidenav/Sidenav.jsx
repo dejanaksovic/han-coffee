@@ -1,10 +1,13 @@
 import "./Sidenav.css"
 
 import { ArrowRight, Instagram, Place } from "@mui/icons-material";
-import { Box, Button, Divider, Stack, SwipeableDrawer, Typography, IconButton, Link } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Box, Button, Divider, Stack, SwipeableDrawer, Typography, IconButton, Link, ButtonGroup, Container } from "@mui/material";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Sidenav = ({ open, toggleOpen }) => {
+
+    const navigate = useNavigate()
+
     return ( 
         <>
             <SwipeableDrawer
@@ -91,6 +94,25 @@ const Sidenav = ({ open, toggleOpen }) => {
                                 Upoznajte nas
                             </Link>
                         </Box>
+                        <Divider />
+                        <Container sx = {{
+                            marginTop: '1rem',
+                            display: 'flex',
+                            gap: '1.5rem',
+                        }}>
+                            <Button variant = "outlined" color = "secondary"
+                            onClick = { () => {
+                                navigate('/login')
+                                toggleOpen()
+                            } }>Ulogujte se</Button>
+                            <Button variant = "contained" color = "secondary" sx = {{
+                                color: 'white',
+                            }}
+                            onClick = { () => {
+                                navigate('/register')
+                                toggleOpen()
+                            } }>Postanite clan</Button>
+                        </Container>
                     </Stack>
                 </Stack>
             </SwipeableDrawer>

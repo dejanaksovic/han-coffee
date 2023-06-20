@@ -7,6 +7,7 @@ import { useCart } from '../../hooks/useCart';
 
 import Article from "../../comonents/Article/Article";
 import { Container, Divider, Typography } from '@mui/material';
+import BottomAppBar from '../../comonents/BottomAppBar/BottomAppBar';
  
 const Articles = () => {
 
@@ -41,6 +42,7 @@ const Articles = () => {
             color: 'white',
         }}/>
             { articles.map ( e => (<Article key = { e._id } article={ e } func = { addItem }/>) ) }
+        <BottomAppBar/>            
         </Container>
      );
 }
