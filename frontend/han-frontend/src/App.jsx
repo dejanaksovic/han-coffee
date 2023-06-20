@@ -23,6 +23,7 @@ import CartContextProvider from './contexts/cartContext'
 import OrderContextProvider from './contexts/orderContext'
 import GlobalNotificationsContextProvider from './contexts/globalNotificationsContext'
 import Home from './pages/Home/Home'
+import ArticlePage from './pages/ArticlePage/ArticlePage'
 
 // ROUTER
 const router = createBrowserRouter(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
   <Route element = { <MainRouteLayout/>}>
     <Route path='/articles' element = { <Articles/> }/>
     <Route path='/orders' element = { <Orders/> }/>
+    <Route path='/articles/:id' element = {<ArticlePage/>}/>
     <Route path='/articles/create' element = { <CreateArticle/> } />
     <Route path='/login' element = { <Login/> } />
     <Route path="/register" element = { <Register/> }/>

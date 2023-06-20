@@ -20,19 +20,7 @@ const MainRouteLayout = () => {
         <Box sx = {{
             minHeight: '100vh',
             backgroundColor: 'primary.main'
-        }}>
-            {/* <div className="bg-image"></div> */}
-            <Fab color = 'secondary'
-                        style = {{
-                            position: 'fixed',
-                            bottom: '30px',
-                            left: '30px',
-                            zIndex: '10000',
-                        }}
-                        onClick={ () => { setShown( (prevState) => !prevState ) }}
-                        >
-                        <ShoppingCart color="neutral"/>
-            </Fab>   
+        }}>   
             <Navbar toggleSideNav={() => {
                 setSideOpen(!sideOpen)
             }}/>
