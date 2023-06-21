@@ -1,17 +1,16 @@
 import './Basket.css'
 import { useCart } from "../../hooks/useCart";
 import { useCreateOrder } from "../../hooks/useAddOrder";
-import { Button, Divider, Drawer, Typography, Box } from '@mui/material';
-import { useEffect } from 'react';
+import { Button, Drawer, Typography, Box } from '@mui/material';
 import CartItem from '../CartItem/CartItem';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Basket = () => {
     const { shown, items, emptyBasket, setShown } = useCart()
     const { loading, createOrder } = useCreateOrder()
-
-    useEffect( () => {
-        console.log(items)
-    }, [items] )
+    const { user } = useAuthContext()
+    const navigate = useNavigate()
 
     return ( 
         <>
@@ -73,11 +72,16 @@ const Basket = () => {
                     }
                     color='secondary'
                     onClick = { e => {
+                        if(!user)
+                            {
+                                navigate('/login')
+                                return
+                            }
                         createOrder(items)
                         emptyBasket()
                     } }
             >
-                Poruci
+                Poruci!
             </Button>
             }
         </Box>

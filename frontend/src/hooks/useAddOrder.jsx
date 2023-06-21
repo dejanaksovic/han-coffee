@@ -34,7 +34,6 @@ export const useCreateOrder = () => {
         }
 
         catch(err) {
-            console.log(err);
             if(err.response) {
                 setAlert({
                     severity: 'error',

@@ -1,7 +1,7 @@
 import './LoginForm.css'
 import { useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
-import Logo from "../../assets/images/han-logo-removebg-preview.png"
+import { Box, TextField, Grid, Paper, Button } from '@mui/material';
 
 
 const LoginForm = () => {
@@ -12,31 +12,30 @@ const LoginForm = () => {
     const [password, setPassword] = useState()
 
     return (
-        <div className='form'>
-            <form className="formConcent">
-            <img style={{
-                width:'150px'
-            }}  src={Logo} alt='Han' />
-                <span className='form-group hedaer'>Uloguj se</span>
-                <div className="form-group">
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" onChange={e => {
-                        setEmail(e.target.value)
-                    }} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" id="password" onChange={e => {
-                        setPassword(e.target.value)
-                    }} />
-                </div>
-                    <button disabled={loading} onClick={e => {
-                        e.preventDefault()
-                        logIn(email, password)
-                    }}>Uloguj se</button>
-
-            </form>
-        </div>
+        <Grid>
+            <Paper
+            elevation = {4}
+            sx = {{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '4rem',
+                maxWidth: 'max(40vh, 30ch)',
+                alignContent: 'center',
+                margin: '0 auto',
+                backgroundColor: 'primary.main'
+            }}>
+                <TextField 
+                label = "Imejl"
+                color = "neutral"
+                placeholder='Unesite imejl adresu'
+                variant='standard'/>
+                <TextField
+                label = "Sifra"
+                placeholder='Unesite sifru'
+                variant='standard'/>
+                <Button>Ulogujte se</Button>
+            </Paper>
+        </Grid>
     );
 }
 

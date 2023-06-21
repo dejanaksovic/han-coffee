@@ -22,10 +22,8 @@ export const useSetOrderDone = () => {
                     Authorization: `Bearer ${user.token}`
             }})
             setAsDone(id)
-            console.log(res); 
         }
         catch(err) {
-            console.log(err);
         }
 
         setLoading(false)

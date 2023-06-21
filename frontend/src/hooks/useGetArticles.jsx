@@ -13,12 +13,10 @@ export const useGetArticles = () => {
 
         try {
             const { data: {articles} } = await axios.get(`${URL}/articles`)
-            await console.log(articles);
             await setArticles(articles)    
         }
 
         catch(err) {
-            console.log(err);
             setError(err)
         }
 

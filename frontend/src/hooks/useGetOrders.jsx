@@ -20,11 +20,9 @@ export const useGetOrders = () => {
                 Authorization: `Bearer ${user.token}`
             }
         })
-        console.log("Porudz", res.data);
         setOrders(res.data.orders)
         }
         catch(err) {
-            console.log(err);
         }
 
     setLoading(false)

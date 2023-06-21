@@ -1,14 +1,19 @@
+import axios from "axios"
 import { useState } from "react"
 import { useAuthContext } from "./useAuthContext"
-import axios from "axios"
 import { useArticleContext } from "./useArticles"
+import { useGlobalNotificationContext } from "./useGlobalNorificationContext"
+import { useNavigate } from "react-router-dom"
 
 export const useLogin = () => {
     const [ error, setError ] = useState()
     const [ loading, setLoading ] = useState()
 
+    const navigate = useNavigate()
+
     const { login } = useAuthContext()
     const { URL } = useArticleContext()
+    const { setAlert } = useGlobalNotificationContext()
 
     const logIn = async (email, password) => {
         setLoading(true)
@@ -20,10 +25,21 @@ export const useLogin = () => {
             })
 
             login(res.data)
-            console.log(res.data);
+            navigate('/articles')
         }
         catch(err) {
-            console.log(err);
+            if(err.response) {
+                setAlert({
+                    severity: 'error',
+                    message: err.response.data.err
+                })
+            }
+            else {
+                setStatus({
+                    severity: 'error',
+                    message: 'Doslo je do greske, proverite vasu internet konekciju i pokusajte ponovo'
+                })
+            }
         }
 
         setLoading(false)

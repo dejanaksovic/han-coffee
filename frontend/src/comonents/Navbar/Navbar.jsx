@@ -1,11 +1,10 @@
 import "./Navbar.css"
 
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import { AppBar, Toolbar, Avatar, Input, Box, MenuItem, IconButton} from '@mui/material';
+import { AppBar, Toolbar, Avatar, IconButton} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Margin, Menu } from '@mui/icons-material';
+import { Menu } from '@mui/icons-material';
 
 const Navbar = ({toggleSideNav}) => {
 
@@ -17,8 +16,6 @@ const Navbar = ({toggleSideNav}) => {
     const { logout } = useAuthContext()
 
     const navigate = useNavigate()
-
-    console.log(user);
 
     return ( <>
         <nav>
@@ -34,6 +31,9 @@ const Navbar = ({toggleSideNav}) => {
                         width: '100px',
                         margin: '0 0  0 -20px '
                     }}
+                    onClick = { () => {
+                        navigate()
+                    } }
                      />
                     <IconButton
                     onClick = { () => {

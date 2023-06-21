@@ -9,7 +9,6 @@ const CartContextProvider = ({children}) => {
 
     const addItem = (item) => {
         setItems( (items) => {
-            console.log("Stize", item);
             const found = items.find( (e) => {
                 return e.article._id === item._id 
             } )

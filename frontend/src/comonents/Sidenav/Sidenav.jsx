@@ -12,6 +12,12 @@ const Sidenav = ({ open, toggleOpen }) => {
         <>
             <SwipeableDrawer
                 anchor="right"
+                onClose = { () => {
+                    toggleOpen()
+                } }
+                onOpen={() => {
+                    toggleOpen()
+                }}
                 open = { open }
                 sx={{
                     minWidth: '80vw',
