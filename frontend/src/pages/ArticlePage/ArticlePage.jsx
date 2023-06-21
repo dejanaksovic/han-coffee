@@ -25,8 +25,9 @@ const ArticlePage = () => {
             { article &&
             <>
             <Avatar src={`${URL}/${article.url}`} sx = {{
-                minWidth: '90vw',
-                minHeight: '90vw',
+                minWidth: 'min(90vw, 420px)',
+                minHeight: 'min(90vw, 420px)',
+                margin: '0 auto',
             }}>
             </Avatar>
                 <Typography fontSize={24} color={'neutral.main'} align="center">{article.name}</Typography>

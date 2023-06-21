@@ -37,9 +37,7 @@ const CartItem = ({ order }) => {
                     marginLeft: 'auto',
                 }}
                 onClick = { e => {
-                console.log(order.article._id)
                 removeItem(order.article._id)
-                console.log(order);
             } }>
                 <Close 
                 color="primary"   
