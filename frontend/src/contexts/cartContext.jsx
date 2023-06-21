@@ -27,12 +27,18 @@ const CartContextProvider = ({children}) => {
          ) )
     }
 
+    const getItemsNumber = () => {
+        return items.reduce((acc, e) => {
+            return acc + e.quantity
+        }, 0)
+    }
+
     const emptyBasket = () => {
         setItems([])
     }
     
     return (
-        <cartContext.Provider value={ {addItem, items, emptyBasket, shown, setShown, removeItem} }>
+        <cartContext.Provider value={ {addItem, items, emptyBasket, shown, setShown, removeItem, getItemsNumber} }>
             { children }
         </cartContext.Provider>
     )

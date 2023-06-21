@@ -75,6 +75,7 @@ const Basket = () => {
                         if(!user)
                             {
                                 navigate('/login')
+                                setShown(false)
                                 return
                             }
                         createOrder(items)
