@@ -12,8 +12,14 @@ const ArticleContextProvider = ({children}) => {
         } )
     }
 
+    const getArticle = ( id ) => {
+        return articles.filter( e => 
+            e._id === id
+        )[0]
+    }
+
     return (
-    <articleContext.Provider value={{articles, setArticles, URL, addArticle}}>
+    <articleContext.Provider value={{articles, setArticles, URL, addArticle, getArticle}}>
         { children }
     </articleContext.Provider>
     )

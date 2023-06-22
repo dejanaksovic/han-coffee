@@ -13,13 +13,9 @@ const OrderContextProvider = ({ children }) => {
     }
 
     const setAsDone = ( id ) => {
-        setOrders( (orders) => {
-            const changedItem = orders.find( e => e._id === id )
-            changedItem.done = true 
-            return [...orders.filter( e => {
-                e._id !== id
-            } ), changedItem]
-        } )
+        const item = orders.filter( e => e._id === id )[0]
+        item.done = true
+        setOrders( [... orders.filter( e => e._id !== id ), item] )
     }
 
     return ( 

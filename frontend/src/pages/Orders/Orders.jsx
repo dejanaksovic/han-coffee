@@ -5,6 +5,7 @@ import { useOrders } from "../../hooks/useOrders";
 import Order from "../../comonents/Order/Order";
 import { useGetArticles } from "../../hooks/useGetArticles";
 import { useArticleContext } from "../../hooks/useArticles";
+import { Box, Grid, Paper } from "@mui/material";
 
 const Orders = () => {
     let interval = null
@@ -30,10 +31,40 @@ const Orders = () => {
 
     return ( 
         <>
-            { orders.length > 0 && articles ? 
-              orders.map( order => (<Order key={order._id} order={ order }/>) ) :
-              null
-            }
+            <Grid sx = {{
+                display: 'flex',
+                gap: '1rem',
+                padding: '1rem',
+                minHeight: '100vh',
+                flexDirection: 'row',
+                maxWidth: '100vw',
+            }}>
+                <Paper sx = {{
+                    flex: '1',
+                    minHeight: '100%',
+                    backgroundColor: 'primary.main'
+                }}
+                elevation={5}>
+                    { orders.map( e => {
+                        if(e.done)
+                        return (<Order key={e._id} order = {e}/>)}
+                        )
+                    }
+                </Paper>
+                <Paper
+                    sx = {{
+                        flex: '1',
+                        backgroundColor: 'primary.main'
+                    }}
+                    elevation={5}>
+                    {
+                        orders.map( e => {
+                            if(!e.done)
+                                return ( <Order key = {e._id} order={e}/> )
+                        } )
+                    } 
+                </Paper>
+            </Grid>
         </>
      );
 }
