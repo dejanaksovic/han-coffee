@@ -19,10 +19,12 @@ app.use(express.urlencoded())
 const articleRouter = require('./routers/articleRouter')
 const orderRouter = require('./routers/orderRouter')
 const userRouter = require('./routers/userRouter')
+const authRouter = require('./routers/authRouter')
 
 app.use('/articles', articleRouter)
 app.use('/orders', orderRouter)
 app.use('/users', userRouter)
+app.use('/auth', authRouter)
 
 app.listen(3000, () => {
     console.log("WORKING");
