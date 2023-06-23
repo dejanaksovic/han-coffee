@@ -3,7 +3,8 @@ import.meta.hot
 
 import { ArrowRight, Instagram, Place } from "@mui/icons-material";
 import { Box, Button, Divider, Stack, SwipeableDrawer, Typography, IconButton, Link, ButtonGroup, Container } from "@mui/material";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, redirect, useNavigate } from "react-router-dom";
+import { getGoogleURL } from "../../utilities/getGoogleUrl";
 
 const Sidenav = ({ open, toggleOpen }) => {
 
@@ -75,24 +76,22 @@ const Sidenav = ({ open, toggleOpen }) => {
                     </Box>
                     </Stack>
                     <Divider/>
-                    <Container sx = {{
-                            marginTop: '1rem',
-                            display: 'flex',
-                            gap: '1.5rem',
-                        }}>
-                            <Button variant = "outlined" color = "secondary"
-                            onClick = { () => {
-                                navigate('/login')
-                                toggleOpen()
-                            } }>Ulogujte se</Button>
-                            <Button variant = "contained" color = "secondary" sx = {{
-                                color: 'white',
-                            }}
-                            onClick = { () => {
-                                navigate('/register')
-                                toggleOpen()
-                            } }>Postanite clan</Button>
-                        </Container>
+                        <Container sx = {{
+                                marginTop: '1rem',
+                                display: 'flex',
+                                gap: '1.5rem',
+                            }}>
+                            <a href={getGoogleURL()}>                          
+                                <Button variant = "outlined" color = "secondary">Ulogujte se</Button>
+                            </a>
+                                <Button variant = "contained" color = "secondary" sx = {{
+                                    color: 'white',
+                                }}
+                                onClick = { () => {
+                                    navigate('/register')
+                                    toggleOpen()
+                                } }>Postanite clan</Button>
+                            </Container>
                     <Divider />
                     <Stack sx = {{
                         padding: '1.25rem',

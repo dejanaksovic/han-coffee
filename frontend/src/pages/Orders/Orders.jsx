@@ -45,7 +45,8 @@ const Orders = () => {
                     backgroundColor: 'primary.main'
                 }}
                 elevation={5}>
-                    { orders.map( e => {
+                    { orders &&
+                    orders.map( e => {
                         if(e.done)
                         return (<Order key={e._id} order = {e}/>)}
                         )
@@ -57,7 +58,7 @@ const Orders = () => {
                         backgroundColor: 'primary.main'
                     }}
                     elevation={5}>
-                    {
+                    { orders &&
                         orders.map( e => {
                             if(!e.done)
                                 return ( <Order key = {e._id} order={e}/> )

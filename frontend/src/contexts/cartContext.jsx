@@ -7,17 +7,17 @@ const CartContextProvider = ({children}) => {
 
     const [shown, setShown] = useState(false)
 
-    const addItem = (item) => {
+    const addItem = (item, quantity) => {
         setItems( (items) => {
             const found = items.find( (e) => {
                 return e.article._id === item._id 
             } )
 
             if(!found) {
-                return [...items, { article: item, quantity: 1 }]
+                return [...items, { article: item, quantity: quantity }]
             }
 
-            return [ ...items.filter( e => e.article._id !== item._id ), {...found,  quantity: found.quantity + 1}]
+            return [ ...items.filter( e => e.article._id !== item._id ), {...found,  quantity: found.quantity + quantity}]
         } )
     }
 

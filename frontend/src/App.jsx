@@ -24,6 +24,7 @@ import OrderContextProvider from './contexts/orderContext'
 import GlobalNotificationsContextProvider from './contexts/globalNotificationsContext'
 import Home from './pages/Home/Home'
 import ArticlePage from './pages/ArticlePage/ArticlePage'
+import { getGoogleURL } from './utilities/getGoogleUrl'
 
 // ROUTER
 const router = createBrowserRouter(
@@ -44,12 +45,18 @@ const router = createBrowserRouter(
 const theme = createTheme( {
   typography: {
     fontFamily:[
-      'Inter', 'sans-serif'
-    ].join(',')
+      'Itim', 'cursive'
+    ].join(','),
+    h1: {
+      fontSize: '32',
+    },
+    h2: {
+      fontSize: '24',
+    }
   } ,
   palette: {
     primary: {
-      main: "#3C463F"
+      main: "#112C19"
     },
     secondary: {
       main: "#FF9900"
