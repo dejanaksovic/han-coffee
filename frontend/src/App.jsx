@@ -24,7 +24,6 @@ import OrderContextProvider from './contexts/orderContext'
 import GlobalNotificationsContextProvider from './contexts/globalNotificationsContext'
 import Home from './pages/Home/Home'
 import ArticlePage from './pages/ArticlePage/ArticlePage'
-import { getGoogleURL } from './utilities/getGoogleUrl'
 
 // ROUTER
 const router = createBrowserRouter(
