@@ -1,4 +1,5 @@
 const express = require('express')
+const cookieParser = require('cookie-parser')
 const app = express()
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
@@ -7,7 +8,7 @@ const Connect = require('./config/db')
 Connect()
 
 app.use(express.static('images'))
-
+app.use(cookieParser())
 app.use(cors())
 app.use(fileUpload({
     createParentPath: true,

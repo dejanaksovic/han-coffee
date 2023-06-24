@@ -6,6 +6,7 @@ const userSchema = mongoose.Schema({
     email: { type: String, unique: true, required: true },
     password: String,
     picture: String,
+    refreshToken: String,
 }, {timestamps: true})
 
 const User = mongoose.model('User', userSchema)

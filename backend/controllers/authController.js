@@ -53,13 +53,20 @@ const googleAuthhander = async(req, res) => {
         upsert: true,
     })
 
-    console.log(user);
-
-    //upsert the user and create a session
-
     //create access and refresh tokens
+    if(!user.refreshToken) {
+        user.refreshToken = jwt.sign({name: googleUser.name, email:  googleUser.email}, process.env.REFRESH_TOKEN_STRING)
+        await user.save()
+    }
+
+    const accessToken = jwt.sign({ email: user.email, name: user.name }, process.env.TOKEN_STRING, { expiresIn: 10*60*1000 })
+    const refreshToken = user.refreshToken
 
     //set coockies
+    res.cookie("accessToken", accessToken, {encode: String})
+    res.cookie("refreshToken", refreshToken, {encode: String})
+    res.cookie("email", user.email, {encode: String})
+    res.cookie("name", user.name, {encode: String})
 
     //redirect back to client
     res.redirect('http://localhost:5173')

@@ -1,9 +1,8 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken') 
 
 const tokenVerification = async (req, res, next) => {
 
     if(!req.headers || !req.headers.authorization || !req.headers.authorization.startsWith('Bearer')) {
-        console.log(req.headers);
 
         return res.status(401).json({
             err: "No authorization"
@@ -11,6 +10,8 @@ const tokenVerification = async (req, res, next) => {
     }
 
     const token = req.headers.authorization.split(' ')[1]
+
+    console.log(token);
 
     if(!token) {
         return res.status(401).json({
