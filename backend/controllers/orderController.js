@@ -5,6 +5,13 @@ let globalNumber = 0
 
 const getOrders = async (req, res) => {
 
+    const { userEmail } = req
+
+    const user = await User.findOne({
+        email: userEmail,
+    })
+
+    if(user.role === "WORKER") {
     try {
         const orders = await Order.find()
         return res.status(200).json({
@@ -15,6 +22,23 @@ const getOrders = async (req, res) => {
     catch(err) {
         return res.status(500).json({
             err,
+        })
+    }
+}
+
+    try {
+        const orders = await Order.find({
+            userId: user._id,
+        })
+
+        return res.status(200).json({
+            orders
+        })
+    }
+
+    catch(err) {
+        return res.status(500).json({
+            err: "Unutrasnja greska, kontaktirajte administratora"
         })
     }
 
@@ -31,20 +55,15 @@ const createOrder = async(req, res) => {
         })
     
         try {
+            const user = await User.findOne({
+                email: userEmail,
+            })
             globalNumber = (globalNumber+1) % 100 
             const order = await Order.create({
             articles,
             number: globalNumber,
-            
+            userId: user._id
         }) 
-
-        const user = await User.findOne({
-            email: userEmail,
-        })
-
-        user.orders.push(order._id)
-
-        await user.save()
 
         return res.status(200).json({
             order,
@@ -97,11 +116,32 @@ const markAsDone = async(req, res) => {
 }
 
 const deleteOrder = async(req, res) => {
+    const { id } = req.params
 
+    try {
+        const order = await Order.findByIdAndDelete(id)
+
+        if(!order)
+            return res.status(400).json({
+                err: "Ta porudzbina ne postoji"
+            })
+        
+        return res.status(200).json({
+            order
+        })    
+    }
+
+    catch(err) {
+        console.log(err);
+        return res.status(500).json({
+            err: "Unutrasnja greska, kontaktirajte administratora"
+        })
+    }
 }
 
 module.exports = {
     getOrders,
     createOrder,
-    markAsDone
+    markAsDone,
+    deleteOrder
 }
