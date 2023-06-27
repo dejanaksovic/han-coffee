@@ -11,8 +11,12 @@ const AuthContextProvider = ({children}) => {
         setUser(null)
     }
 
+    const login = (user) => {
+        setUser(user)
+    }
+
     return (
-        <authContext.Provider value = { { user, logout } }>
+        <authContext.Provider value = { { user, logout, login } }>
             { children }
         </authContext.Provider>
     )

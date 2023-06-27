@@ -35,7 +35,8 @@ export const useLogin = () => {
                 })
             }
             else {
-                setStatus({
+                console.log(err);
+                setAlert({
                     severity: 'error',
                     message: 'Doslo je do greske, proverite vasu internet konekciju i pokusajte ponovo'
                 })
