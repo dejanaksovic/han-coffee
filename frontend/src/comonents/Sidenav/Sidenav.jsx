@@ -1,5 +1,4 @@
 import "./Sidenav.css"
-import.meta.hot
 
 import { ArrowRight, Instagram, Place } from "@mui/icons-material";
 import { Box, Button, Divider, Stack, SwipeableDrawer, Typography, IconButton, Link, ButtonGroup, Container } from "@mui/material";
