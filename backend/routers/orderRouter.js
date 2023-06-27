@@ -6,7 +6,7 @@ const { getOrders, createOrder, markAsDone, deleteOrder } = require('../controll
 const tokenVerification = require('../middleware/tokenVerification.js')
 const { workerVerification } = require('../middleware/userVerification.js')
 
-orderRouter.get('/', tokenVerification, getOrders)
+orderRouter.get('/:id?', tokenVerification, getOrders)
 orderRouter.post('/', tokenVerification, createOrder)
 orderRouter.put('/:id', tokenVerification, workerVerification, markAsDone)
 orderRouter.delete('/:id', tokenVerification, workerVerification, deleteOrder)

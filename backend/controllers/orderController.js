@@ -6,10 +6,22 @@ let globalNumber = 0
 const getOrders = async (req, res) => {
 
     const { userEmail } = req
+    const { id } = req.params
 
     const user = await User.findOne({
         email: userEmail,
     })
+
+    if(id) {
+        const orders = await Order.findById(id)
+        if(!orders)
+            return res.status(400).json({
+                err: "Ta porudzbina ne postoji"
+            })
+        return res.status(200).json({
+            orders
+        })
+    }
 
     if(user.role === "WORKER") {
     try {
