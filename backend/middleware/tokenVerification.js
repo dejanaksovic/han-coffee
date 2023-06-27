@@ -11,8 +11,6 @@ const tokenVerification = async (req, res, next) => {
 
     const token = req.headers.authorization.split(' ')[1]
 
-    console.log(token);
-
     if(!token) {
         return res.status(401).json({
             err: "No authorization"
@@ -21,7 +19,7 @@ const tokenVerification = async (req, res, next) => {
 
     try {
     const payload = jwt.verify(token, process.env.TOKEN_STRING)
-    req.userId = payload.userId
+    req.userEmail = payload.userEmail
     next()
     }
     catch( err ) {

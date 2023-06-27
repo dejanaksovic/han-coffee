@@ -46,7 +46,7 @@ const createUser = async (req, res) => {
 
         if(user)
             return res.status(201).json({
-                token: await jwt.sign({userId: user._id}, process.env.TOKEN_STRING, {
+                token: await jwt.sign({userEmail: user.email}, process.env.TOKEN_STRING, {
                     expiresIn: '1d',
                 }),
                 email,
@@ -85,7 +85,7 @@ const signIn = async (req, res) => {
             })
         
         return res.status(200).json({
-            token: jwt.sign({ userId: user._id }, process.env.TOKEN_STRING, { expiresIn: '1d' }),
+            token: jwt.sign({ userEmail: user.email }, process.env.TOKEN_STRING, { expiresIn: '1d' }),
             email,
         })
     }

@@ -3,7 +3,9 @@ const User = require('../models/User')
 const adminVerification = async (req, res, next) => {
 
     try {
-        const user = await User.findById(req.userId)
+        const user = await User.findOne({
+            email: req.userEmail
+        })
         if(!user) {
             return res.status(404).json({
                 err: "User doesn't exist"
@@ -26,15 +28,17 @@ const adminVerification = async (req, res, next) => {
 }
 
 const workerVerification = async (req, res, next) => {
-    const { userId } = req
+    const { userEmail } = req
 
-    if(!userId)
+    if(!userEmail)
         return res.status(401).json({
             err:"No authorization"
         })
 
     try {
-        const user = await User.findById(userId)
+        const user = await User.findOne({
+            email: userEmail,
+        })
         if(!user)
             return res.status(404).json({
                 err: "User not found"

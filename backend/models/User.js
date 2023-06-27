@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
     password: String,
     picture: String,
     refreshToken: String,
+    orders: [ {type: mongoose.Types.ObjectId, ref: 'Article'} ]
 }, {timestamps: true})
 
 const User = mongoose.model('User', userSchema)

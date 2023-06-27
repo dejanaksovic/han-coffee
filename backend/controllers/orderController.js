@@ -1,4 +1,5 @@
 const Order = require('../models/Order')
+const User = require('../models/User')
 
 let globalNumber = 0
 
@@ -22,8 +23,7 @@ const getOrders = async (req, res) => {
 const createOrder = async(req, res) => {
 
     const { articles } = req.body
-
-    console.log(articles);
+    const { user } = req
 
     if(!articles)
         return res.status(400).json({
@@ -35,7 +35,10 @@ const createOrder = async(req, res) => {
             const order = await Order.create({
             articles,
             number: globalNumber,
+            
         }) 
+
+        const User = await User.findOne()
 
         return res.status(200).json({
             order,
@@ -85,6 +88,10 @@ const markAsDone = async(req, res) => {
     return res.status(200).json({
         order,
     })
+}
+
+const deleteOrder = async(req, res) => {
+
 }
 
 module.exports = {
