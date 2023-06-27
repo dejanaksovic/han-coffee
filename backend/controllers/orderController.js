@@ -23,7 +23,7 @@ const getOrders = async (req, res) => {
 const createOrder = async(req, res) => {
 
     const { articles } = req.body
-    const { user } = req
+    const { userEmail } = req
 
     if(!articles)
         return res.status(400).json({
@@ -38,7 +38,13 @@ const createOrder = async(req, res) => {
             
         }) 
 
-        const User = await User.findOne()
+        const user = await User.findOne({
+            email: userEmail,
+        })
+
+        user.orders.push(order._id)
+
+        await user.save()
 
         return res.status(200).json({
             order,
