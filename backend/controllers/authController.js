@@ -81,6 +81,7 @@ const googleAuthhander = async(req, res) => {
         httpOnly: true,
         sameSite: 'None',
         secure: true,
+        domain: 'https://onernder.com'
       });
 
       res.cookie("role", user.role, {
@@ -88,7 +89,7 @@ const googleAuthhander = async(req, res) => {
         httpOnly: true,
         sameSite: 'None',
         secure: true,
-        domain: 'https://han-frontend.onrender.com/'
+        domain: process.env.RENDER_EXTERNAL_HOSTNAME 
       })
       
       // Redirect to the frontend
