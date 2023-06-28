@@ -64,50 +64,29 @@ const googleAuthhander = async(req, res) => {
 
     //set coockies
     res.cookie("accessToken", accessToken, {
-        encode: String,
-        maxAge: 1000 * 6 * 10,
+        maxAge: 3600000,
         httpOnly: true,
-        sameSite: 'lax',
-        domain: '.onrender.com' // Set domain to '.onrender.com' for cross-subdomain access
+        sameSite: 'Lax',
+        domain: 'han-frontend.onrender.com'
       });
       
       res.cookie("refreshToken", refreshToken, {
-        encode: String,
-        maxAge: 1000 * 6 * 10,
+        maxAge: 3600000,
         httpOnly: true,
-        sameSite: 'lax',
-        domain: '.onrender.com' // Set domain to '.onrender.com' for cross-subdomain access
+        sameSite: 'Lax',
+        domain: 'han-frontend.onrender.com'
       });
       
       res.cookie("email", user.email, {
-        encode: String,
-        maxAge: 1000 * 6 * 10,
+        maxAge: 3600000,
         httpOnly: true,
         sameSite: 'None',
         secure: true,
-        domain: 'han-frontend.onrender.com' // Set domain to 'han-frontend.onrender.com' for the frontend
+        domain: 'han-frontend.onrender.com'
       });
       
-      res.cookie("name", user.name, {
-        encode: String,
-        maxAge: 1000 * 6 * 10,
-        httpOnly: true,
-        sameSite: 'None',
-        secure: true,
-        domain: 'han-frontend.onrender.com' // Set domain to 'han-frontend.onrender.com' for the frontend
-      });
-      
-      res.cookie("role", user.role, {
-        encode: String,
-        maxAge: 1000 * 6 * 10,
-        httpOnly: true,
-        sameSite: 'None',
-        secure: true,
-        domain: 'han-frontend.onrender.com' // Set domain to 'han-frontend.onrender.com' for the frontend
-      });
-
-    //redirect back to client
-    res.redirect(process.env.SITE_REDIRECT)
+      // Redirect to the frontend
+      res.redirect('https://han-frontend.onrender.com');
 }
 
 module.exports = {
