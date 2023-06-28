@@ -1,5 +1,3 @@
-import "./Sidenav.css"
-
 import { ArrowRight, Google, Instagram, Place } from "@mui/icons-material";
 import { Box, Button, Divider, Stack, SwipeableDrawer, Typography, IconButton, Link, ButtonGroup, Container } from "@mui/material";
 import { NavLink, redirect, useNavigate } from "react-router-dom";
