@@ -65,9 +65,9 @@ const googleAuthhander = async(req, res) => {
     //set coockies
     res.cookie("accessToken", accessToken, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'lax', domain: 'han-frontend.onrender.com'})
     res.cookie("refreshToken", refreshToken, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'lax', domain: 'onrender.com'})
-    res.cookie("email", user.email, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'none', secure: true, domain: '.com'})
-    res.cookie("name", user.name, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'none', secure: true, domain: 'onrender.com'})
-    res.cookie("role", user.role, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'none', secure: true, domain: 'han-frontend.onrender.com'})
+    res.cookie("email", user.email, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'None', secure: true, domain: '.com'})
+    res.cookie("name", user.name, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'None', secure: true, domain: '.onrender.com'})
+    res.cookie("role", user.role, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'none', secure: true, domain: '.onrender.com'})
 
     //redirect back to client
     res.redirect(process.env.SITE_REDIRECT)
