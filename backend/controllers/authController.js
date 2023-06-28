@@ -62,38 +62,18 @@ const googleAuthhander = async(req, res) => {
     const accessToken = jwt.sign({ email: user.email }, process.env.TOKEN_STRING, { expiresIn: 10*60*1000 })
     const refreshToken = user.refreshToken
 
-    //set coockies
-    res.cookie("accessToken", accessToken, {
-        maxAge: 3600000,
-        httpOnly: true,
-        sameSite: 'Lax',
-        domain: 'https://han-frontend.onrender.com/'
-      });
-      
-      res.cookie("refreshToken", refreshToken, {
-        maxAge: 3600000,
-        httpOnly: true,
-        sameSite: 'Lax',
-      });
-      
-      res.cookie("email", user.email, {
-        maxAge: 3600000,
-        httpOnly: true,
-        sameSite: 'None',
-        secure: true,
-        domain: 'https://onernder.com'
-      });
+    // set coockies
+    // TODO
 
-      res.cookie("role", user.role, {
-        maxAge: 36000,
-        httpOnly: true,
-        sameSite: 'None',
-        secure: true,
-        domain: process.env.RENDER_EXTERNAL_HOSTNAME 
-      })
-      
-      // Redirect to the frontend
-      res.redirect('https://han-frontend.onrender.com');
+    const valuesToSend = {
+        accessToken,
+        refreshToken,
+        email: user.email,
+        role: user.role,
+    }
+    
+    // Redirect to the frontend
+    res.redirect(`${env.CLIENT_URL}/${qs.stringify(values)}`);
 }
 
 module.exports = {
