@@ -87,6 +87,7 @@ const signIn = async (req, res) => {
         return res.status(200).json({
             token: jwt.sign({ email: user.email }, process.env.TOKEN_STRING, { expiresIn: '1d' }),
             email,
+            role
         })
     }
     catch(err) {
