@@ -49,7 +49,9 @@ const ArticlePage = () => {
                 justifyItems: 'center',
                 position: 'relative',
             }}>
-                <img src={ article && `${URL}/${article.url}`} alt="" />
+                <img src={ article && `${URL}/${article.url}`} alt="" style = {{
+                    maxWidth: '80vw',
+                }} />
                 <Box sx ={{
                     position: 'absolute',
                     bottom: '-10%',
