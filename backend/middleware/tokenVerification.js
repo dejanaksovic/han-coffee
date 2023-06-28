@@ -19,10 +19,12 @@ const tokenVerification = async (req, res, next) => {
 
     try {
     const payload = jwt.verify(token, process.env.TOKEN_STRING)
-    req.userEmail = payload.userEmail
+    req.userEmail = payload.email
+    console.log(payload);
     next()
     }
     catch( err ) {
+        console.log(err);
         return res.status(401).json({
             err: "Invalid token"
         })

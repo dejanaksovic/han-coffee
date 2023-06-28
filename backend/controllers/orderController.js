@@ -70,6 +70,7 @@ const createOrder = async(req, res) => {
             const user = await User.findOne({
                 email: userEmail,
             })
+            console.log(user);
             globalNumber = (globalNumber+1) % 100 
             const order = await Order.create({
             articles,
