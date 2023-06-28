@@ -63,11 +63,11 @@ const googleAuthhander = async(req, res) => {
     const refreshToken = user.refreshToken
 
     //set coockies
-    res.cookie("accessToken", accessToken, {encode: String})
-    res.cookie("refreshToken", refreshToken, {encode: String})
-    res.cookie("email", user.email, {encode: String})
-    res.cookie("name", user.name, {encode: String})
-    res.cookie("role", user.role, {encode: String})
+    res.cookie("accessToken", accessToken, {encode: String, sameSite: 'lax'})
+    res.cookie("refreshToken", refreshToken, {encode: String, sameSite: 'lax'})
+    res.cookie("email", user.email, {encode: String, sameSite: 'lax'})
+    res.cookie("name", user.name, {encode: String, sameSite: 'lax'})
+    res.cookie("role", user.role, {encode: String, sameSite: 'lax'})
 
     //redirect back to client
     res.redirect('http://localhost:5173')
