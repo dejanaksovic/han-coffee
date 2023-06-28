@@ -67,14 +67,13 @@ const googleAuthhander = async(req, res) => {
         maxAge: 3600000,
         httpOnly: true,
         sameSite: 'Lax',
-        domain: 'han-frontend.onrender.com'
+        domain: 'https://han-frontend.onrender.com/'
       });
       
       res.cookie("refreshToken", refreshToken, {
         maxAge: 3600000,
         httpOnly: true,
         sameSite: 'Lax',
-        domain: 'han-frontend.onrender.com'
       });
       
       res.cookie("email", user.email, {
@@ -82,8 +81,15 @@ const googleAuthhander = async(req, res) => {
         httpOnly: true,
         sameSite: 'None',
         secure: true,
-        domain: 'han-frontend.onrender.com'
       });
+
+      res.cookie("role", user.role, {
+        maxAge: 36000,
+        httpOnly: true,
+        sameSite: 'None',
+        secure: true,
+        domain: 'https://han-frontend.onrender.com/'
+      })
       
       // Redirect to the frontend
       res.redirect('https://han-frontend.onrender.com');
