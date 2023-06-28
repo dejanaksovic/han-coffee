@@ -4,7 +4,7 @@ const articleContext = createContext()
 
 const ArticleContextProvider = ({children}) => {
     const [ articles, setArticles ] = useState([])
-    const URL = "http://localhost:3000"
+    const URL = "https://han-backend.onrender.com"
 
     const addArticle = (article) => {
         setArticles( (prevState) => {
