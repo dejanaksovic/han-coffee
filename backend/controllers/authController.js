@@ -64,9 +64,9 @@ const googleAuthhander = async(req, res) => {
 
     //set coockies
     res.cookie("accessToken", accessToken, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'lax', domain: 'han-frontend.onrender.com'})
-    res.cookie("refreshToken", refreshToken, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'lax', domain: '.onrender.com'})
-    res.cookie("email", user.email, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'lax', domain: '.onrender.com'})
-    res.cookie("name", user.name, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'lax', domain: '.onrender.com'})
+    res.cookie("refreshToken", refreshToken, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'lax', domain: 'onrender.com'})
+    res.cookie("email", user.email, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'lax', domain: '.com'})
+    res.cookie("name", user.name, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'lax', domain: 'www.han-frontend.onrender.com'})
     res.cookie("role", user.role, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'lax', domain: '.onrender.com'})
 
     //redirect back to client
