@@ -67,6 +67,7 @@ const googleAuthhander = async(req, res) => {
     res.cookie("refreshToken", refreshToken, {encode: String})
     res.cookie("email", user.email, {encode: String})
     res.cookie("name", user.name, {encode: String})
+    res.cookie("role", user.role, {encode: String})
 
     //redirect back to client
     res.redirect('http://localhost:5173')
