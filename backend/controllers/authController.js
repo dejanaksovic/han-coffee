@@ -70,7 +70,7 @@ const googleAuthhander = async(req, res) => {
     res.cookie("role", user.role, {encode: String})
 
     //redirect back to client
-    res.redirect('http://localhost:5173')
+    res.redirect(process.env.SITE_REDIRECT)
 }
 
 module.exports = {
