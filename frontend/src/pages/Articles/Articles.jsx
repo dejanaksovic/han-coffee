@@ -6,13 +6,17 @@ import { useGetArticles } from "../../hooks/useGetArticles";
 import { useCart } from '../../hooks/useCart';
 
 import Article from "../../comonents/Article/Article";
-import { Container, Divider, Typography } from '@mui/material';
+import { Button, Container, Divider, Typography } from '@mui/material';
 import BottomAppBar from '../../comonents/BottomAppBar/BottomAppBar';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';
  
 const Articles = () => {
 
-    const { error, loading, getArticles } = useGetArticles()
+    const { getArticles } = useGetArticles()
     const { articles } = useArticleContext()
+    const { user } = useAuthContext()
+    const navigate = useNavigate()
 
     const { addItem } = useCart()
 
@@ -22,6 +26,7 @@ const Articles = () => {
 
     useEffect( () => {
         fetchdata()
+        console.log(user);
     }, [] )
 
     return ( 
@@ -38,6 +43,12 @@ const Articles = () => {
         }}>
             Meni
         </Typography>
+        { user && user.role && user.role === "ADMIN" ? 
+        <Button sx = {{
+            width: 'fit-content'
+        }} color="secondary" variant = "contained" onClick={ e => {
+            navigate('/articles/create')
+        } }>Dodaj artikal</Button> : null }
         <Divider sx = {{
             color: 'white',
         }}/>

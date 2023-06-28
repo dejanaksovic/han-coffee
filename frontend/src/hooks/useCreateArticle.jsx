@@ -13,7 +13,7 @@ export const useCreateArticle = () => {
 
     const { user } = useAuthContext()
 
-    const createArticle = async (name, price, desc, image) => {
+    const createArticle = async (name, price, desc, image, category) => {
         setLoading(true)
         try {
             const formData = new FormData()
@@ -21,13 +21,14 @@ export const useCreateArticle = () => {
             formData.append('price', price)
             formData.append('desc', desc)
             formData.append('image', image)
+            formData.append('category', category)
 
             const res = await axios.post(`${URL}/articles`, formData, {
                 headers: {
                     Authorization: `Bearer ${user.token}`
                 }
             })
-
+            console.log(res);
             addArticle(res.data.article)
             setAlert({
                 severity: 'success',

@@ -62,7 +62,7 @@ const theme = createTheme( {
     },
     neutral: {
       main: '#FFFF'
-    }
+    },
   }
  } )
 
