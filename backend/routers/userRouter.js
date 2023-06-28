@@ -6,7 +6,7 @@ const tokenVerification = require('../middleware/tokenVerification')
 
 const { createUser, signIn } = require('../controllers/userController')
 
-userRouter.post('/', createUser)
+userRouter.post('/',tokenVerification, adminVerification, createUser)
 userRouter.post('/signin', signIn)
 
 module.exports = userRouter

@@ -17,7 +17,7 @@ const getArticles = async (req, res) => {
 
 const createArticle = async (req, res) => {
 
-    const { name, price, desc } = req.body
+    const { name, price, desc, category } = req.body
 
     if(!req.files)
         return res.status(400).json({
@@ -31,6 +31,7 @@ const createArticle = async (req, res) => {
             name,
             price,
             desc,
+            category: category.toUpperCase(),
             url: image.name
         })
 
