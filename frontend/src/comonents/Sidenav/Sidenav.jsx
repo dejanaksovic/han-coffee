@@ -4,10 +4,12 @@ import { ArrowRight, Google, Instagram, Place } from "@mui/icons-material";
 import { Box, Button, Divider, Stack, SwipeableDrawer, Typography, IconButton, Link, ButtonGroup, Container } from "@mui/material";
 import { NavLink, redirect, useNavigate } from "react-router-dom";
 import { getGoogleURL } from "../../utilities/getGoogleUrl";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Sidenav = ({ open, toggleOpen }) => {
 
     const navigate = useNavigate()
+    const { user } = useAuthContext()
 
     return ( 
         <>
@@ -72,6 +74,15 @@ const Sidenav = ({ open, toggleOpen }) => {
                                 textDecoration:'underline',
                             }}>Pocetna</Typography>
                         </NavLink>
+                        { user.role === "USER" ?
+                        <NavLink to={'/orders'} onClick={ () => {
+                            toggleOpen()
+                        } }><Typography color={'neutral'}
+                            fontSize={56}
+                            sx = {{
+                                textDecoration:'underline',
+                        }}>Vase porudzbine</Typography>
+                        </NavLink> : null }
                     </Box>
                     </Stack>
                     <Divider/>
@@ -80,12 +91,13 @@ const Sidenav = ({ open, toggleOpen }) => {
                                 display: 'flex',
                                 gap: '1.5rem',
                             }}>
-                            <a href={getGoogleURL()}>                          
+                            { !user.email && <a href={getGoogleURL()}>                          
                                 <Button variant = "outlined" color = "secondary">
                                 <Google color="neutral"/>    
                                  Ulogujte se
                                 </Button>
-                            </a>
+                                </a> 
+                            }
                             </Container>
                     <Divider />
                     <Stack sx = {{

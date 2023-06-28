@@ -5,7 +5,7 @@ import { useOrders } from "../../hooks/useOrders";
 import Order from "../../comonents/Order/Order";
 import { useGetArticles } from "../../hooks/useGetArticles";
 import { useArticleContext } from "../../hooks/useArticles";
-import { Box, Grid, Paper } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 
 const Orders = () => {
     let interval = null
@@ -36,7 +36,12 @@ const Orders = () => {
                 gap: '1rem',
                 padding: '1rem',
                 minHeight: '100vh',
-                flexDirection: 'row',
+                flexDirection: {
+                    lg: 'row',
+                    md: 'column',
+                    sm: 'column',
+                    xs: 'column',
+                },
                 maxWidth: '100vw',
             }}>
                 <Paper sx = {{
@@ -45,9 +50,12 @@ const Orders = () => {
                     backgroundColor: 'primary.main'
                 }}
                 elevation={5}>
+                    <Typography variant="h1" color={'neutral.main'}>
+                        Nezavrsene
+                    </Typography>
                     { orders &&
                     orders.map( e => {
-                        if(e.done)
+                        if(!e.done)
                         return (<Order key={e._id} order = {e}/>)}
                         )
                     }
@@ -58,9 +66,10 @@ const Orders = () => {
                         backgroundColor: 'primary.main'
                     }}
                     elevation={5}>
+                    <Typography variant="h1" color={'neutral.main'}>Zavrsene</Typography>
                     { orders &&
                         orders.map( e => {
-                            if(!e.done)
+                            if(e.done)
                                 return ( <Order key = {e._id} order={e}/> )
                         } )
                     } 

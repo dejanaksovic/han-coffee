@@ -25,6 +25,9 @@ export const useLogin = () => {
             })
 
             login(res.data)
+            console.log(res.data.role);
+            if(res.data.role === "WORKER")
+                return navigate('/orders')
             navigate('/articles')
         }
         catch(err) {

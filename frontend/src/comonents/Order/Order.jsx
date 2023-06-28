@@ -3,32 +3,25 @@ import './Order.css'
 
 import { useSetOrderDone } from '../../hooks/useSetOrderDone';
 import { Button, Typography } from '@mui/material';
-import { useEffect } from 'react';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Order = ({ order }) => {
 
     const { getArticle } = useArticleContext()
-    const { loading, error, setDone } = useSetOrderDone()
-   
-    const handleClick = () => {
-        setDone(order._id)
-    }
-    useEffect( () => {
-        console.log(order)
-        console.log(getArticle(order.articles[0].articleId))
-    }, [] )
+    const { setDone } = useSetOrderDone()
+    const { user } = useAuthContext()
 
     return ( 
         <div className="order-container">
             {
-                order.articles.map ( orderArticle => {
+                order.articles.map ( (orderArticle,i) => {
                     const article = getArticle(orderArticle.articleId)
 
-                    return ( <>
-                    <Typography variant='h6' color={'neutral.main'}>
+                    return (
+                    <Typography key={i} variant='h6' color={'neutral.main'}>
                         {article.name} {orderArticle.quantity}
                     </Typography>
-                    </> )
+                     )
                 } )
             }
             <Typography color = { 'neutral.main' } variant = {'body2'}>
@@ -42,8 +35,8 @@ const Order = ({ order }) => {
             <Typography color = {'neutral.main'}>
                 Broj porudzbine: {order.number}
             </Typography>
-            { !order.done ? <Button color={'secondary'} variant='contained' onClick={ e => {
-                setDone( order._id )
+            { !order.done && user && user.role === "WORKER" ? <Button color={'secondary'} variant='contained' onClick={ e => {
+                setDone(order._id)
             }}>Zavrsi porudzbinu</Button> : null }
         </div>
      );
