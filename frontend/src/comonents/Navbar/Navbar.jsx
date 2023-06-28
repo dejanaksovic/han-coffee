@@ -5,6 +5,7 @@ import { useAuthContext } from '../../hooks/useAuthContext';
 import { AppBar, Toolbar, Avatar, IconButton} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Menu } from '@mui/icons-material';
+import image from "../../assets/images/han-logo-removebg-preview.png"
 
 const Navbar = ({toggleSideNav}) => {
 
@@ -26,7 +27,7 @@ const Navbar = ({toggleSideNav}) => {
                                  }} >
                     <Avatar 
                     className = 'logo' 
-                    src="src/assets/images/han-logo-veca.png"
+                    src={image}
                     style={{
                         width: '100px',
                         margin: '0 0  0 -20px '

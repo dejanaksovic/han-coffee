@@ -1,6 +1,6 @@
 import "./Sidenav.css"
 
-import { ArrowRight, Instagram, Place } from "@mui/icons-material";
+import { ArrowRight, Google, Instagram, Place } from "@mui/icons-material";
 import { Box, Button, Divider, Stack, SwipeableDrawer, Typography, IconButton, Link, ButtonGroup, Container } from "@mui/material";
 import { NavLink, redirect, useNavigate } from "react-router-dom";
 import { getGoogleURL } from "../../utilities/getGoogleUrl";
@@ -81,15 +81,11 @@ const Sidenav = ({ open, toggleOpen }) => {
                                 gap: '1.5rem',
                             }}>
                             <a href={getGoogleURL()}>                          
-                                <Button variant = "outlined" color = "secondary">Ulogujte se</Button>
+                                <Button variant = "outlined" color = "secondary">
+                                <Google color="neutral"/>    
+                                 Ulogujte se
+                                </Button>
                             </a>
-                                <Button variant = "contained" color = "secondary" sx = {{
-                                    color: 'white',
-                                }}
-                                onClick = { () => {
-                                    navigate('/register')
-                                    toggleOpen()
-                                } }>Postanite clan</Button>
                             </Container>
                     <Divider />
                     <Stack sx = {{

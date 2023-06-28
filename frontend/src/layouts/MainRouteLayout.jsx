@@ -15,7 +15,7 @@ const MainRouteLayout = () => {
 
     return ( 
         <Box sx = {{
-            minHeight: '100vh',
+            minHeight: '120vh',
             backgroundColor: 'primary.main'
         }}>   
             <Navbar toggleSideNav={() => {
