@@ -63,11 +63,11 @@ const googleAuthhander = async(req, res) => {
     const refreshToken = user.refreshToken
 
     //set coockies
-    res.cookie("accessToken", accessToken, {encode: String, maxAge: 1000*6*10, httpOnly: false, sameSite: 'none', secure: true, domain: "649c5eb71071922e52c0c5f2--dreamy-buttercream-145b3d.netlify.app/"})
-    res.cookie("refreshToken", refreshToken, {encode: String, maxAge: 1000*6*10, httpOnly: false, sameSite: 'none', secure: true, domain: "649c5eb71071922e52c0c5f2--dreamy-buttercream-145b3d.netlify.app/"})
-    res.cookie("email", user.email, {encode: String, maxAge: 1000*6*10, httpOnly: false, sameSite: 'none', secure: true, domain: "649c5eb71071922e52c0c5f2--dreamy-buttercream-145b3d.netlify.app/"})
-    res.cookie("name", user.name, {encode: String, maxAge: 1000*6*10, httpOnly: false, sameSite: 'none', secure: true, domain: "649c5eb71071922e52c0c5f2--dreamy-buttercream-145b3d.netlify.app/"})
-    res.cookie("role", user.role, {encode: String, maxAge: 1000*6*10, httpOnly: false, sameSite: 'none', secure: true, domain: "649c5eb71071922e52c0c5f2--dreamy-buttercream-145b3d.netlify.app/"})
+    res.cookie("accessToken", accessToken, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'none', secure: true, domain: "649c5eb71071922e52c0c5f2--dreamy-buttercream-145b3d.netlify.app/"})
+    res.cookie("refreshToken", refreshToken, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'none', secure: true, domain: "649c5eb71071922e52c0c5f2--dreamy-buttercream-145b3d.netlify.app/"})
+    res.cookie("email", user.email, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'none', secure: true, domain: "649c5eb71071922e52c0c5f2--dreamy-buttercream-145b3d.netlify.app/"})
+    res.cookie("name", user.name, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'none', secure: true, domain: "649c5eb71071922e52c0c5f2--dreamy-buttercream-145b3d.netlify.app/"})
+    res.cookie("role", user.role, {encode: String, maxAge: 1000*6*10, httpOnly: true, sameSite: 'none', secure: true, domain: "649c5eb71071922e52c0c5f2--dreamy-buttercream-145b3d.netlify.app/"})
 
     //redirect back to client
     res.redirect(process.env.SITE_REDIRECT)
