@@ -63,7 +63,7 @@ const googleAuthhander = async(req, res) => {
     const refreshToken = user.refreshToken
 
     //set coockies
-    res.cookie("accessToken", accessToken, {encode: String, maxAge: 1000*6*10, httpOnly: false, sameSite: 'lax', domain: 'https://649c5eb71071922e52c0c5f2--dreamy-buttercream-145b3d.netlify.app/'})
+    res.cookie("accessToken", accessToken, {encode: String, maxAge: 1000*6*10, httpOnly: false, sameSite: 'lax', domain: '649c5eb71071922e52c0c5f2--dreamy-buttercream-145b3d.netlify.app/'})
     res.cookie("refreshToken", refreshToken, {encode: String, maxAge: 1000*6*10, httpOnly: false, sameSite: 'none'})
     res.cookie("email", user.email, {encode: String, maxAge: 1000*6*10, httpOnly: false, sameSite: 'none'})
     res.cookie("name", user.name, {encode: String, maxAge: 1000*6*10, httpOnly: false, sameSite: 'none'})
