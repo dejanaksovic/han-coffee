@@ -32,7 +32,8 @@ const Article = ({article, func}) => {
               fontSize: 24,
             }}>
               {article.name}
-            </Typography>
+            </Typography> 
+            { user && user.role === "ADMIN" &&
             <Button variant='contained' color='error' onClick = { (e) => {
               e.preventDefault()
               e.stopPropagation()
@@ -40,6 +41,7 @@ const Article = ({article, func}) => {
             } }>
               Obrisi artikal
             </Button>
+          }
           </Box>
         </NavLink>
      );
