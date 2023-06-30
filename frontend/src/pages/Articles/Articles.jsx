@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useArticleContext } from "../../hooks/useArticles";
 import { useGetArticles } from "../../hooks/useGetArticles";
 import { useCart } from '../../hooks/useCart';
+import { getCategories } from "../../utilities/categories";
 
 import Article from "../../comonents/Article/Article";
-import { Button, Container, Divider, Typography } from '@mui/material';
+import { Button, Container, Divider, FormControl, MenuItem, Select, Typography } from '@mui/material';
 import BottomAppBar from '../../comonents/BottomAppBar/BottomAppBar';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +16,9 @@ const Articles = () => {
     const { articles } = useArticleContext()
     const { user } = useAuthContext()
     const navigate = useNavigate()
-    const [responsiveMargin, setResponsiveMargin] = useState(0)
+
+    const [responsiveMargin, setResponsiveMargin] = useState()
+    const [filter, setFilter] = useState("")
 
     const { addItem } = useCart()
 
@@ -39,7 +42,7 @@ const Articles = () => {
             fontWeight: '500',
             fontSize: 32,
         }}>
-            Meni
+            { filter ? filter : "MENI" }
         </Typography>
         { user && user.role && user.role === "ADMIN" ? 
         <Button sx = {{
@@ -47,10 +50,31 @@ const Articles = () => {
         }} color="secondary" variant = "contained" onClick={ e => {
             navigate('/articles/create')
         } }>Dodaj artikal</Button> : null }
+        <FormControl>
+            <Select 
+                color="neutral"
+                variant="filled"
+                labelId="category"
+                label = "Kategorija"
+                sx = {{
+                width: 'fit-content',
+            }} 
+            style = {{
+                color: 'white',
+            }}
+            value={filter} onChange = { e => {
+                setFilter(e.target.value)
+            } }>
+                <MenuItem value = {""}>SVE</MenuItem>
+                { getCategories().map( e => (<MenuItem key = {e} value = {e}>{e}</MenuItem>) ) }
+            </Select>
+        </FormControl>
         <Divider sx = {{
             color: 'white',
         }}/>
-            { articles.map ( e => (<Article key = { e._id } article={ e } func = { addItem }/>) ) }
+            {  articles && !filter ? articles.map ( e => (<Article key = { e._id } article={ e } func = { addItem }/>) ) :
+                articles.map( e => (e.category === filter ? <Article key={ e._id } article = { e }/> : null) )
+            }
         <BottomAppBar setMargin={ setResponsiveMargin }/>            
         </Container>
      );
