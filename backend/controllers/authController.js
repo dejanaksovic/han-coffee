@@ -10,8 +10,6 @@ const googleAuthhander = async(req, res) => {
     // get the code from qs
     const { code } = req.query
 
-    console.log(req.query);
-
     const values = {
         code,
         client_id: process.env.GOOGLE_CLIENT_ID,
@@ -19,8 +17,6 @@ const googleAuthhander = async(req, res) => {
         redirect_uri: process.env.REDIRECT_URI,
         grant_type: 'authorization_code',
     }
-
-    console.log('values', values);
 
     // get the id and access token with the code 
     try {
@@ -39,7 +35,7 @@ const googleAuthhander = async(req, res) => {
 
     if(!googleUser.email_verified)
         return res.status(403).json({
-            message: "Google account is not verified"
+            message: "Morate verifikovati gugl nalog"
         })
 
     const user = await User.findOneAndUpdate({

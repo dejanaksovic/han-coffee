@@ -4,7 +4,7 @@ const tokenVerification = async (req, res, next) => {
     if(!req.headers || !req.headers.authorization || !req.headers.authorization.startsWith('Bearer')) {
 
         return res.status(401).json({
-            err: "No authorization"
+            err: "Ne postoji autorizacija"
         })
     }
 
@@ -13,14 +13,13 @@ const tokenVerification = async (req, res, next) => {
 
     if(!token) {
         return res.status(401).json({
-            err: "No authorization"
+            err: "Ne postoji autorizacija"
         })
     }
 
     try {
         const payload = jwt.verify(token, process.env.TOKEN_STRING)
         req.userEmail = payload.email
-        console.log(payload);
         return next()
     }
     catch( err ) {
@@ -35,7 +34,6 @@ const tokenVerification = async (req, res, next) => {
                 return next()
             }
             catch( err ) {
-                console.log(err.message);
                     return res.status(401).json({
                     err: "Korisnikova sesija za logovanje je istekla, ili uopste nije ulogovan"
                 })

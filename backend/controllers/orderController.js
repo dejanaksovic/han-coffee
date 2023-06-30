@@ -64,14 +64,13 @@ const createOrder = async(req, res) => {
 
     if(!articles)
         return res.status(400).json({
-            err: "bad request, no articles"
+            err: "Morate imati bar jedan artikal da biste napravili porudzbinu"
         })
     
         try {
             const user = await User.findOne({
                 email: userEmail,
             })
-            console.log(user);
             globalNumber = (globalNumber+1) % 100 
             const order = await Order.create({
             articles,
@@ -85,9 +84,8 @@ const createOrder = async(req, res) => {
         })}
 
         catch(err) {
-            console.log(err);
             return res.status(500).json({
-                err,
+                err: "Unutrasnja greska, kontaktirajte administratora"
             })
         }
   
@@ -99,7 +97,7 @@ const markAsDone = async(req, res) => {
 
     if(!id) 
         return res.status(400).json({
-            err: "Order that is marked for done must have an id"
+            err: "Neisppravan zahtev, posaljite identifikator porudzbine"
         })
 
     try {
@@ -107,18 +105,18 @@ const markAsDone = async(req, res) => {
     }
     catch(err) {
         return res.status(500).json({
-            err,
+            err: "Unutrasnja greska, kontaktirajte administratora"
         })
     }
 
     if(!order)
         return res.status(404).json({
-            err: "The order with that id doens't exist"
+            err: "Ta porudzbina ne postoji"
         })
     
     if(order.done) {
         return res.status(400).json({
-            err: "Order is already marked as done"
+            err: "Porudzbine je vec zavrsena"
         })
     }
 
@@ -141,6 +139,11 @@ const deleteOrder = async(req, res) => {
             return res.status(400).json({
                 err: "Ta porudzbina ne postoji"
             })
+
+        if(!order.done)
+            return res.status(400).json({
+                err: "Morate zavrsiti porudzbinu da biste je obrisali"
+            }) 
         
         return res.status(200).json({
             order,
@@ -149,7 +152,6 @@ const deleteOrder = async(req, res) => {
     }
 
     catch(err) {
-        console.log(err);
         return res.status(500).json({
             err: "Unutrasnja greska, kontaktirajte administratora"
         })

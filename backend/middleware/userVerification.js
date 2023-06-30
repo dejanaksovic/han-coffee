@@ -8,13 +8,13 @@ const adminVerification = async (req, res, next) => {
         })
         if(!user) {
             return res.status(404).json({
-                err: "User doesn't exist"
+                err: "Taj korisnik ne postoji"
             })
         }
 
         if(user.role !== "ADMIN")
             return res.status(403).json({
-                err:"No permission"
+                err:"Nemate dozvolu za ovu akciju"
             })
 
         next()
@@ -22,7 +22,7 @@ const adminVerification = async (req, res, next) => {
 
     catch(err) {
         return res.status(500).json({
-            err: "Internal server error"
+            err: "Unutrasnja greska, kontaktirajte administratora"
         })
     }
 }
@@ -32,7 +32,7 @@ const workerVerification = async (req, res, next) => {
 
     if(!userEmail)
         return res.status(401).json({
-            err:"No authorization"
+            err:"Ne postoji autorizacija"
         })
 
     try {
@@ -41,12 +41,12 @@ const workerVerification = async (req, res, next) => {
         })
         if(!user)
             return res.status(404).json({
-                err: "User not found"
+                err: "Ovaj korisnik vise ne postoji"
             })
 
         if(user.role !== "WORKER")
             return res.status(403).json({
-                err: "No permission"
+                err: "Nemate dozvolu za ovu akciju"
             })
 
         next()
@@ -54,7 +54,7 @@ const workerVerification = async (req, res, next) => {
 
     catch(err) {
         return res.status(500).json({
-            err: "Internal server error"
+            err: "Unutrasnja greska, kontaktirajte administratora"
         })
     }
 }

@@ -12,7 +12,7 @@ const getArticles = async (req, res) => {
 
     catch(err) {
         return res.status(500).json({
-            err: "Internal server error"
+            err: "Internalni problem, kontaktirajte administratora"
         });
     }
 }
@@ -23,7 +23,7 @@ const createArticle = async (req, res) => {
 
     if(!req.files)
         return res.status(400).json({
-            err: "No image shown"
+            err: "Potrebna je slika"
         })
 
     const image = req.files.image
@@ -45,9 +45,8 @@ const createArticle = async (req, res) => {
         })
     }
     catch(err) {
-        console.log(err);
         return res.status(500).json({
-            err: "Internal server error"
+            err: "Unutrasnja greska, kontaktirajte administratora"
         })
     }
 }
@@ -57,12 +56,11 @@ const deleteArticle = async (req, res) => {
 
     if(!id && !mongoose.isValidObjectId(id))
         return res.status(400).json({
-            err: "Zahtev za objektom je neispravan"
+            err: "Taj artikal ne postoji"
         })
 
     try {
     const article = await Article.findByIdAndDelete(id)
-    console.log(article);
     if(!article)
         return res.status(404).json({
             err: "Artikal nije pronadjen"
@@ -75,7 +73,6 @@ const deleteArticle = async (req, res) => {
             })
         }
         catch(err) {
-            console.log(err);
             return res.status(500).json({
                 err: "Internalna greska, kontaktirajte administratora"
             })

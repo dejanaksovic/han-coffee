@@ -67,21 +67,21 @@ const signIn = async (req, res) => {
 
     if(!email || !password)
         return res.status(400).json({
-            err: "No credentials"
+            err: "Ne postoje kredencijali"
         })
 
     try {
         const user = await User.findOne({email})
         if(!user)
             return res.status(404).json({
-                err:"User with that email not found"
+                err:"Losi kredencijali"
             })
 
         const success = await bcrypt.compare(password, user.password)
 
         if(!success)
             return res.status(401).json({
-                err: "Invalid credentials"
+                err: "Losi kredencijali"
             })
         
         return res.status(200).json({
@@ -93,7 +93,7 @@ const signIn = async (req, res) => {
     catch(err) {
         console.log(err);
         return res.status(500).json({
-            err: "Internal server error" 
+            err: "Unutrasnja greska, kontaktirajte administratora" 
         })
     }
 }
