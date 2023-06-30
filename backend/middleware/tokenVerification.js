@@ -10,6 +10,7 @@ const tokenVerification = async (req, res, next) => {
     }
 
     const token = req.headers.authorization.split(' ')[1]
+    const refreshToken = req.headers.authorization.split(' ')[2]
 
     if(!token) {
         return res.status(401).json({
@@ -18,15 +19,29 @@ const tokenVerification = async (req, res, next) => {
     }
 
     try {
-    const payload = jwt.verify(token, process.env.TOKEN_STRING)
-    req.userEmail = payload.email
-    console.log(payload);
-    next()
+        const payload = jwt.verify(token, process.env.TOKEN_STRING)
+        req.userEmail = payload.email
+        console.log(payload);
+        return next()
     }
     catch( err ) {
-        console.log(err);
+        if(err.message.includes('expired')) {
+            // Check the refresh token
+            try {
+                const refreshPayload = jwt.verify(refreshToken)
+                //sign a new one
+                const newToken = jwt.sign({ email: refreshPayload.email })
+                req.newToken = newToken
+                return next()
+            }
+            catch( err ) {
+                return res.status(401).json({
+                    err: "Korisnikova sesija za logovanje je istekla, ili uopste nije ulogovan"
+                })
+            }
+        }
         return res.status(401).json({
-            err: "Invalid token"
+            err: "Korisnikova sesija za logovanje je istekla, ili uopste nije ulogovan"
         })
     }
 

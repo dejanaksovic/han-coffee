@@ -39,6 +39,7 @@ const createArticle = async (req, res) => {
 
         return res.status(200).json({
             article,
+            newToken: req.newToken | null,
         })
     }
     catch(err) {

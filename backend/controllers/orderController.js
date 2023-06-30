@@ -44,7 +44,8 @@ const getOrders = async (req, res) => {
         })
 
         return res.status(200).json({
-            orders
+            orders,
+            newToken: req.newToken | null
         })
     }
 
@@ -80,6 +81,7 @@ const createOrder = async(req, res) => {
 
         return res.status(200).json({
             order,
+            token: req.newToken | null
         })}
 
         catch(err) {
@@ -125,6 +127,7 @@ const markAsDone = async(req, res) => {
 
     return res.status(200).json({
         order,
+        newToken: req.newToken | null,
     })
 }
 
@@ -140,7 +143,8 @@ const deleteOrder = async(req, res) => {
             })
         
         return res.status(200).json({
-            order
+            order,
+            newToken: req.newToken | null,
         })    
     }
 
