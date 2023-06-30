@@ -1,4 +1,6 @@
 const Article = require('../models/Article')
+const mongoose = require('mongoose')
+const fs = require('fs')
 
 const getArticles = async (req, res) => {
     try {
@@ -50,7 +52,48 @@ const createArticle = async (req, res) => {
     }
 }
 
+const deleteArticle = async (req, res) => {
+    const { id } = req.params
+
+    if(!id && !mongoose.isValidObjectId(id))
+        return res.status(400).json({
+            err: "Zahtev za objektom je neispravan"
+        })
+
+    try {
+    const article = await Article.findByIdAndDelete(id)
+    console.log(article);
+    if(!article)
+        return res.status(404).json({
+            err: "Artikal nije pronadjen"
+        })
+
+        try {
+            fs.unlinkSync(`images/${article.url}`, (err) => {
+                if(err)
+                    console.log(err);
+            })
+        }
+        catch(err) {
+            console.log(err);
+            return res.status(500).json({
+                err: "Internalna greska, kontaktirajte administratora"
+            })
+        }
+
+        return res.status(200).json({
+            article
+        })
+    }
+    catch(err) {
+        return res.status(500).json({
+            err: "Greska pri komunikaciji sa bazom, kontaktirajte administratora"
+        })
+    }
+}
+
 module.exports = {
     getArticles,
-    createArticle
+    createArticle,
+    deleteArticle
 }
