@@ -1,13 +1,12 @@
 import { Button, Container } from "@mui/material";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import dotenv from "dotenv"
 
 const Home = () => {
-    dotenv.config()
     const navigate = useNavigate()
     useEffect( () => {
-        console.log( process.env.RENDER_EXTERNAL_HOSTNAME )
+        console.log( import.meta.env.VITE_GOOGLE_AUTH_URL )
+        console.log( import.meta.env.RENDER_EXTERNAL_HOSTNAME )
     }, [] )
 
     return ( 
