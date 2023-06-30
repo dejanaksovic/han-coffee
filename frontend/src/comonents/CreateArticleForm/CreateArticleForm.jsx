@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useCreateArticle } from "../../hooks/useCreateArticle";
 import { Button, FormControl, Grid, InputLabel, MenuItem, Select , TextField} from "@mui/material";
-import { getCategories } from "../../helpers/categories";
+import { getCategories } from "../../utilities/categories";
 
 const CreateArticleForm = () => {
 

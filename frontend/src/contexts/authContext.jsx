@@ -1,11 +1,12 @@
 import { createContext, useState } from "react";
-import { getCookieValue } from "../hooks/getCookieValue";
+import { getUserFromUrl } from "../utilities/getUserFromUrl";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const authContext = createContext()
 
 const AuthContextProvider = ({children}) => {
 
-    const [ user, setUser ] = useState({name: getCookieValue('name'), email: getCookieValue('email'), token: getCookieValue('accessToken'), refreshToken: getCookieValue('refreshToken')})
+    const [user, setUser] = useLocalStorage('user', getUserFromUrl())
 
     const logout = () => {
         setUser(null)

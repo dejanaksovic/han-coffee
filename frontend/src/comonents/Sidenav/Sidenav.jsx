@@ -72,7 +72,7 @@ const Sidenav = ({ open, toggleOpen }) => {
                                 textDecoration:'underline',
                             }}>Pocetna</Typography>
                         </NavLink>
-                        { user.role === "USER" ?
+                        { user && user.role === "USER" ?
                         <NavLink to={'/orders'} onClick={ () => {
                             toggleOpen()
                         } }><Typography color={'neutral'}
@@ -89,12 +89,13 @@ const Sidenav = ({ open, toggleOpen }) => {
                                 display: 'flex',
                                 gap: '1.5rem',
                             }}>
-                            { !user.email && <a href={getGoogleURL()}>                          
+                            { !user || !user.email ? <a href={getGoogleURL()}>                          
                                 <Button variant = "outlined" color = "secondary">
                                 <Google color="neutral"/>    
                                  Ulogujte se
                                 </Button>
-                                </a> 
+                                </a> :
+                                null
                             }
                             </Container>
                     <Divider />

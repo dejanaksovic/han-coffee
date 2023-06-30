@@ -14,7 +14,7 @@ const Order = ({ order }) => {
     return ( 
         <div className="order-container">
             {
-                order.articles.map ( (orderArticle,i) => {
+                order && order.articles && order.articles.map ( (orderArticle,i) => {
                     const article = getArticle(orderArticle.articleId)
 
                     return (
