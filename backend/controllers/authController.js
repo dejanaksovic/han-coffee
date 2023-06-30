@@ -73,7 +73,7 @@ const googleAuthhander = async(req, res) => {
     }
     
     // Redirect to the frontend
-    res.redirect(`${env.CLIENT_URL}/${qs.stringify(values)}`);
+    res.redirect(`${process.env.CLIENT_URL}?${qs.stringify(valuesToSend)}`);
 }
 
 module.exports = {
