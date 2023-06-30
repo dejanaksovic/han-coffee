@@ -1,11 +1,13 @@
 import './Article.css'
-import { Avatar, Box, Typography } from '@mui/material';
+import { Avatar, Box, IconButton, Typography, Button } from '@mui/material';
 import { useArticleContext } from '../../hooks/useArticles';
 import { NavLink } from 'react-router-dom';
+import { useDeleteArticles } from '../../hooks/useDeleteArticle';
 
 const Article = ({article, func}) => {
 
     const { URL } = useArticleContext()
+    const { loading, deleteArticle } = useDeleteArticles()
 
     const handleClick = () => {
         func(
@@ -31,6 +33,13 @@ const Article = ({article, func}) => {
             }}>
               {article.name}
             </Typography>
+            <Button variant='contained' color='error' onClick = { (e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              deleteArticle(article._id)
+            } }>
+              Obrisi artikal
+            </Button>
           </Box>
         </NavLink>
      );

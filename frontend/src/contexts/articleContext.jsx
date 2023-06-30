@@ -18,8 +18,12 @@ const ArticleContextProvider = ({children}) => {
         )[0]
     }
 
+    const deleteArticleById = ( id ) => {
+        setArticles(articles.filter( e => e._id !== id ))
+    }
+
     return (
-    <articleContext.Provider value={{articles, setArticles, URL, addArticle, getArticle}}>
+    <articleContext.Provider value={{articles, setArticles, URL, addArticle, getArticle, deleteArticleById}}>
         { children }
     </articleContext.Provider>
     )

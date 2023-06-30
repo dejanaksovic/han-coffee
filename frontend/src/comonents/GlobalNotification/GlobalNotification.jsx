@@ -25,7 +25,7 @@ const GlobalNotification = () => {
             top: '2rem',
             left: '50%',
             transform: 'translateX(-50%)'
-        }}>
+        }}> { alert ? 
         <Collapse in = {open}>
             <Alert severity={alert ? alert.severity : 'warning'}
                    action = {
@@ -37,7 +37,9 @@ const GlobalNotification = () => {
                     }>
                 { alert && alert.message }
             </Alert>
-        </Collapse>
+        </Collapse> : 
+        null
+    }
     </Box>
      );
 }

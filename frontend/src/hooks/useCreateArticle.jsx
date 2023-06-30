@@ -44,5 +44,5 @@ export const useCreateArticle = () => {
         setLoading(false)
     }
 
-    return { error, loading, createArticle }
+    return { loading, createArticle }
 }
