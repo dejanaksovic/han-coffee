@@ -1,6 +1,4 @@
-import './Articles.css'
-
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useArticleContext } from "../../hooks/useArticles";
 import { useGetArticles } from "../../hooks/useGetArticles";
 import { useCart } from '../../hooks/useCart';
@@ -17,6 +15,7 @@ const Articles = () => {
     const { articles } = useArticleContext()
     const { user } = useAuthContext()
     const navigate = useNavigate()
+    const [responsiveMargin, setResponsiveMargin] = useState(0)
 
     const { addItem } = useCart()
 
@@ -25,13 +24,12 @@ const Articles = () => {
     }
 
     useEffect( () => {
-        fetchdata()
-        console.log(user);
+        getArticles()
     }, [] )
 
     return ( 
         <Container sx = {{
-            marginTop: '1rem',
+            marginTop: `${responsiveMargin ? responsiveMargin + 16 : '10'}px`,
             display:'flex',
             flexDirection:'column',
             gap: '2rem',
@@ -53,7 +51,7 @@ const Articles = () => {
             color: 'white',
         }}/>
             { articles.map ( e => (<Article key = { e._id } article={ e } func = { addItem }/>) ) }
-        <BottomAppBar/>            
+        <BottomAppBar setMargin={ setResponsiveMargin }/>            
         </Container>
      );
 }

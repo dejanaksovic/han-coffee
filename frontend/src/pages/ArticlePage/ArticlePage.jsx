@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import { useArticleContext } from "../../hooks/useArticles";
 import BottomAppBar from "../../comonents/BottomAppBar/BottomAppBar";
@@ -16,18 +15,24 @@ const ArticlePage = () => {
     const [article, setArticle] = useState(null)
     const [ quantity, setQuantity ] = useState(1)
 
+    const [responsiveMargin, setResponsiveMargin] = useState(0)
+
     useEffect( () => {
         setArticle( articles.find( e => 
             e._id === id
         ) )
-        
     }, [] )
+
+    useEffect(() => {
+        console.log(responsiveMargin);
+    }, [responsiveMargin])
 
     return ( 
         <Grid sx = {{
             display: 'flex',
             flexDirection: 'column',
             gap: '3rem',
+            paddingBottom: `${responsiveMargin}px`,
         }}>
             <Box sx = {{
                 display: 'flex',
@@ -119,7 +124,7 @@ const ArticlePage = () => {
                     Dodaj u korpu
                 </Button>
             </Box>
-            <BottomAppBar />
+            <BottomAppBar setMargin={setResponsiveMargin}/>
         </Grid>
      );
 }
