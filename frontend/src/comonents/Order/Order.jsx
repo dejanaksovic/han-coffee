@@ -27,7 +27,7 @@ const Order = ({ order }) => {
             <Typography color = { 'neutral.main' } variant = {'body2'}>
                 Ukupna cena: { order && order.articles &&
                     order.articles.reduce( (acc, e) => {
-                        const price = getArticle( e.articleId ).price
+                        const price = getArticle( e.articleId ) ? getArticle( e.articleId ) : 0
                         return acc+price
                     }, 0 )
                 }

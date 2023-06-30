@@ -1,19 +1,15 @@
 import './Article.css'
-import { Avatar, Box, IconButton, Typography, Button } from '@mui/material';
+import { Avatar, Box, Typography, Button } from '@mui/material';
 import { useArticleContext } from '../../hooks/useArticles';
 import { NavLink } from 'react-router-dom';
 import { useDeleteArticles } from '../../hooks/useDeleteArticle';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Article = ({article, func}) => {
 
     const { URL } = useArticleContext()
     const { loading, deleteArticle } = useDeleteArticles()
-
-    const handleClick = () => {
-        func(
-            article
-        )
-    }
+    const { user } = useAuthContext()
 
     return ( 
         <NavLink to = {`/articles/${article._id}`}>
