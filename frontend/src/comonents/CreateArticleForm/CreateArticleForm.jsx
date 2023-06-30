@@ -31,7 +31,8 @@ const CreateArticleForm = () => {
                         }
                     }} onChange={(e) => {
                         setName(e.target.value)
-                    }} type="text" id = "name"/>
+                    }} type="text" id = "name"
+                    value={ name }/>
                 </FormControl>
                 <FormControl margin = "normal" fullWidth>
                     <TextField color = "neutral" label = "Cena artikla" sx = {{
@@ -43,7 +44,8 @@ const CreateArticleForm = () => {
                         }
                     }} onChange={(e) => {
                         setPrice(e.target.value)
-                    }} type="number" id = "price"/>
+                    }} type="number" id = "price"
+                    value = {price}/>
                 </FormControl>
                 <FormControl margin = "normal" fullWidth>
                     <TextField color = "neutral" label = "Opis" sx = {{
@@ -55,7 +57,8 @@ const CreateArticleForm = () => {
                         }
                     }} onChange = { e => {
                         setDesc(e.target.value)
-                    } }  type="text" id = "desc"/>
+                    } }  type="text" id = "desc"
+                    value = {desc}/>
                 </FormControl>
                 <FormControl margin = "normal" fullWidth>
                     <TextField sx = {{
@@ -67,7 +70,6 @@ const CreateArticleForm = () => {
                         }
                     }} color = "neutral" type="file" name="image" encType = "multipart/form-data" onChange={(e) => {
                         setImage(e.target.files[0])
-                        console.log(e.target.files[0])
                     } }/>
                 </FormControl>
                 <FormControl margin = "normal" fullWidth >
@@ -101,6 +103,9 @@ const CreateArticleForm = () => {
                 onClick={(e) => {
                     e.preventDefault()
                     createArticle(name, price, desc, image, category)
+                    setName("")
+                    setPrice("")
+                    setDesc("")
                 }}>Dodaj artikal</Button>
             </Grid>
             </form>
