@@ -6,7 +6,7 @@ export const getUserFromUrl = () => {
     const email = items.get('email') || undefined
     const role = items.get('role') || undefined
 
-    if(role && refreshToken && email && role)
+    if(token && refreshToken && email && role)
         return {
             token,
             refreshToken,

@@ -6,8 +6,12 @@ const GlobalNotificationsContextProvider = ({ children }) => {
 
     const [ alert, setAlert ] = useState(null)
 
+    const makeAlert = ( severity, message ) => {
+        setAlert( { severity, message } )
+    }
+
     return ( 
-        <globalNotificationsContext.Provider value = {{ alert, setAlert }}>
+        <globalNotificationsContext.Provider value = {{ alert, setAlert, makeAlert }}>
             { children }
         </globalNotificationsContext.Provider>
      );

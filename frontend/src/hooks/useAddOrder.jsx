@@ -2,15 +2,17 @@ import { useState } from "react"
 import axios from 'axios'
 import { useArticleContext } from "./useArticles"
 import { useOrders } from "./useOrders"
-import { useAuthContext } from "./useAuthContext"
 import { useGlobalNotificationContext } from "./useGlobalNorificationContext"
+import { getVerificationString } from "../utilities/verificationString"
+import { useAuthContext } from "./useAuthContext"
 
 export const useCreateOrder = () => {
     const [ loading, setLoading ] = useState(false)
     const { URL } = useArticleContext()
     const { addOrder } = useOrders()
-    const { user } = useAuthContext()
-    const { setAlert } = useGlobalNotificationContext()
+    const { makeAlert } = useGlobalNotificationContext()
+
+    const { user, updateToken } = useAuthContext()
 
     const createOrder = async (articles) => {
 
@@ -23,28 +25,21 @@ export const useCreateOrder = () => {
                 } )              
             }, {
                 headers: {
-                    Authorization: `Bearer ${user.token}`
+                    Authorization: getVerificationString(user)
                 }
             })
             addOrder(res.data)
-            setAlert( {
-                severity: 'success',
-                message: `Uspesno poslata porudzbina, broj porudzbine je\n${res.data.order.number}`,
-            } )
+            if(res.data.newToken)
+                updateToken(res.data.newToken)
+            makeAlert( 'success', `Uspesno poslata porudzbina, broj over porudzbine je ${res.data.order.number}` )
         }
 
         catch(err) {
             if(err.response) {
-                setAlert({
-                    severity: 'error',
-                    message: err.response.data.err
-                })
+                makeAlert('error', `Porudzbina nije poslata, greska: ${err.response.err}`)
             }
             else {
-                setStatus({
-                    severity: 'error',
-                    message: 'Doslo je do greske, proverite vasu internet konekciju i pokusajte ponovo'
-                })
+                makeAlert('error', 'Greska pri komunikaciji sa serverom, proverite vasu internet konekciju ili se obratite administratoru')
             }
         }
         

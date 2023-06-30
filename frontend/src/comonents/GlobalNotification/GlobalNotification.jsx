@@ -1,29 +1,33 @@
 import { Alert, Box, Collapse, IconButton } from "@mui/material";
 import { useGlobalNotificationContext } from "../../hooks/useGlobalNorificationContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Close } from "@mui/icons-material";
 
 const GlobalNotification = () => {
 
     const { alert, setAlert } = useGlobalNotificationContext()
+    const [ open, setOpen ] = useState(false)
 
     useEffect( () => {
-        if(alert)
+        if(!open) { 
+            setOpen(true)
             setTimeout( () => {
-                setAlert(null)
+                setOpen(false)
             }, 5*1000 )
+        }
     }, [alert] )
 
     return ( 
         <Box sx = {{
             position:'absolute',
             zIndex: 3000,
+            width: '80%',
             top: '2rem',
             left: '50%',
             transform: 'translateX(-50%)'
         }}>
-        <Collapse in = {Boolean(alert)}>
-            <Alert severity={alert ? alert.severity : "warning"}
+        <Collapse in = {open}>
+            <Alert severity={alert ? alert.severity : 'warning'}
                    action = {
                     <IconButton onClick = { e => {
                         setAlert(null)

@@ -4,7 +4,7 @@ const articleContext = createContext()
 
 const ArticleContextProvider = ({children}) => {
     const [ articles, setArticles ] = useState([])
-    const URL = "https://han-backend.onrender.com"
+    const URL = import.meta.env.VITE_SERVER_ENDPOINT
 
     const addArticle = (article) => {
         setArticles( (prevState) => {

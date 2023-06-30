@@ -1,17 +1,15 @@
 import axios from "axios"
 import { useState } from "react"
 import { useArticleContext } from "./useArticles"
-import { useAuthContext } from "./useAuthContext"
 import { useGlobalNotificationContext } from "./useGlobalNorificationContext"
+import { getVerificationString } from "../utilities/verificationString"
+import { useAuthContext } from "./useAuthContext"
 
 export const useCreateArticle = () => {
-    const [ error, setError ] = useState()
-    const [ loading, setLoading ] = useState()
-    const { setAlert } = useGlobalNotificationContext()
-    
+    const [ loading, setLoading ] = useState()    
+    const { user, updateToken } = useAuthContext()
+    const { makeAlert } = useGlobalNotificationContext()
     const { URL, addArticle } = useArticleContext()
-
-    const { user } = useAuthContext()
 
     const createArticle = async (name, price, desc, image, category) => {
         setLoading(true)
@@ -25,29 +23,21 @@ export const useCreateArticle = () => {
 
             const res = await axios.post(`${URL}/articles`, formData, {
                 headers: {
-                    Authorization: `Bearer ${user.token}`
+                    Authorization: getVerificationString(user)
                 }
             })
-            console.log(res);
+            if(res.data.newToken)
+                updateToken(res.data.newToken)
             addArticle(res.data.article)
-            setAlert({
-                severity: 'success',
-                message: 'Artikal uspasno dodat!'
-            })
+            makeAlert( 'success', `Uspesno kreiran artikal ${res.data.article.name}` )
         }
 
         catch(err) {
             if(err.response) {
-                setAlert({
-                    severity: 'error',
-                    message: err.response.data.err
-                })
+                makeAlert('error', `Artikal nije kreiran, greska: ${err.response.err}`)
             }
             else {
-                setStatus({
-                    severity: 'error',
-                    message: 'Doslo je do greske, proverite vasu internet konekciju i pokusajte ponovo'
-                })
+                makeAlert('error', 'Greska pri komunikaciji sa serverom, proverite vasu internet konekciju ili se obratite administratoru')
             }
         }
 
