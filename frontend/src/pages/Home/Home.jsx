@@ -3,9 +3,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import dotenv from "dotenv"
 
-process.config()
-
 const Home = () => {
+    dotenv.config()
     const navigate = useNavigate()
     useEffect( () => {
         console.log( process.env.RENDER_EXTERNAL_HOSTNAME )
