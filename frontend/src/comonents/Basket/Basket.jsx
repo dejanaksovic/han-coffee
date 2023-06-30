@@ -72,7 +72,6 @@ const Basket = () => {
                     }
                     color='secondary'
                     onClick = { e => {
-                        console.log(user);
                         if(!user)
                             {
                                 navigate('/login')

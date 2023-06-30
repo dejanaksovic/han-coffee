@@ -17,7 +17,6 @@ export const useGetArticles = () => {
         }
 
         catch(err) {
-            console.log(err);
             setError(err)
         }
 

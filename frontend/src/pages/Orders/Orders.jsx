@@ -25,7 +25,6 @@ const Orders = () => {
             return
         interval = setInterval( () => {
             getOrders()
-            console.log('refreshing')
         }, 30000 )
     }, [] )
 

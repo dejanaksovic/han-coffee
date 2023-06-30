@@ -4,10 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     const navigate = useNavigate()
-    useEffect( () => {
-        console.log( import.meta.env.VITE_GOOGLE_AUTH_URL )
-        console.log( import.meta.env.RENDER_EXTERNAL_HOSTNAME )
-    }, [] )
 
     return ( 
     <Container sx = {{

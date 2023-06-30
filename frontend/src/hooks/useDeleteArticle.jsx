@@ -24,7 +24,6 @@ export const useDeleteArticles = () => {
         }
     
     catch(err) {
-        console.log(err)
         if(err.response) {
             makeAlert('error', `Artikal nije obrisan, greska: ${err.response.data.err}`)
         }

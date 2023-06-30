@@ -10,7 +10,6 @@ const BottomAppBar = ({setMargin}) => {
     
     useEffect(() => {
         setMargin(ref.current.offsetHeight + 10)
-        console.log(ref.current.offsetHeight);
     }, [ref])
 
     return ( 

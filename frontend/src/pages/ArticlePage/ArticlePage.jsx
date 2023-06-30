@@ -23,10 +23,6 @@ const ArticlePage = () => {
         ) )
     }, [] )
 
-    useEffect(() => {
-        console.log(responsiveMargin);
-    }, [responsiveMargin])
-
     return ( 
         <Grid sx = {{
             display: 'flex',
