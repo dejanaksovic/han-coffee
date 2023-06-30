@@ -18,8 +18,12 @@ const OrderContextProvider = ({ children }) => {
         setOrders( [... orders.filter( e => e._id !== id ), item] )
     }
 
+    const deleteOrderById = ( id ) => [
+        setOrders( [... orders.filter( e => e._id !== id )] )
+    ]
+
     return ( 
-        <orderContext.Provider value={ {setOrders, addOrder, orders, setAsDone} }>
+        <orderContext.Provider value={ {setOrders, addOrder, orders, setAsDone, deleteOrderById} }>
             {children}
         </orderContext.Provider>  
      );

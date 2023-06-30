@@ -1,14 +1,14 @@
 import { useArticleContext } from '../../hooks/useArticles';
-import './Order.css'
-
 import { useSetOrderDone } from '../../hooks/useSetOrderDone';
 import { Button, Typography } from '@mui/material';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import { useDeleteOrder } from '../../hooks/useDeleteOrder';
 
 const Order = ({ order }) => {
 
     const { getArticle } = useArticleContext()
     const { setDone } = useSetOrderDone()
+    const { deleteOrder } = useDeleteOrder()
     const { user } = useAuthContext()
 
     return ( 
@@ -37,6 +37,9 @@ const Order = ({ order }) => {
             </Typography>
             { !order.done && user && user.role === "WORKER" ? <Button color={'secondary'} variant='contained' onClick={ e => {
                 setDone(order._id)
+            }}>Zavrsi porudzbinu</Button> : null }
+            { order.done && user && user.role === "WORKER" ? <Button color={'error'} variant='contained' onClick={ e => {
+                deleteOrder(order._id)
             }}>Zavrsi porudzbinu</Button> : null }
         </div>
      );

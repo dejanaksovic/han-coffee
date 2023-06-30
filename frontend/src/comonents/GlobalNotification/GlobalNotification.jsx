@@ -9,7 +9,7 @@ const GlobalNotification = () => {
     const [ open, setOpen ] = useState(false)
 
     useEffect( () => {
-        if(!open) { 
+        if(!open && alert) { 
             setOpen(true)
             setTimeout( () => {
                 setOpen(false)
@@ -19,7 +19,7 @@ const GlobalNotification = () => {
 
     return ( 
         <Box sx = {{
-            position:'absolute',
+            position:'fixed',
             zIndex: 3000,
             width: '80%',
             top: '2rem',
@@ -30,7 +30,7 @@ const GlobalNotification = () => {
             <Alert severity={alert ? alert.severity : 'warning'}
                    action = {
                     <IconButton onClick = { e => {
-                        setAlert(null)
+                        setOpen(false)
                     } }>
                         <Close/>
                     </IconButton>
