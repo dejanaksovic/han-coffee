@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken') 
 
 const tokenVerification = async (req, res, next) => {
-
     if(!req.headers || !req.headers.authorization || !req.headers.authorization.startsWith('Bearer')) {
 
         return res.status(401).json({
@@ -28,14 +27,16 @@ const tokenVerification = async (req, res, next) => {
         if(err.message.includes('expired')) {
             // Check the refresh token
             try {
-                const refreshPayload = jwt.verify(refreshToken)
+                const refreshPayload = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_STRING)
                 //sign a new one
-                const newToken = jwt.sign({ email: refreshPayload.email })
+                const newToken = jwt.sign({ email: refreshPayload.email }, process.env.TOKEN_STRING, { expiresIn: '5min' })
                 req.newToken = newToken
+                req.userEmail = refreshPayload.email
                 return next()
             }
             catch( err ) {
-                return res.status(401).json({
+                console.log(err.message);
+                    return res.status(401).json({
                     err: "Korisnikova sesija za logovanje je istekla, ili uopste nije ulogovan"
                 })
             }

@@ -55,11 +55,11 @@ const googleAuthhander = async(req, res) => {
 
     //create access and refresh tokens
     if(!user.refreshToken) {
-        user.refreshToken = jwt.sign({email:  googleUser.email}, process.env.REFRESH_TOKEN_STRING)
+        user.refreshToken = jwt.sign({email:  googleUser.email}, process.env.REFRESH_TOKEN_STRING, { expiresIn: 1000*60*60*24*365})//a year
         await user.save()
     }
 
-    const accessToken = jwt.sign({ email: user.email }, process.env.TOKEN_STRING, { expiresIn: 10*60*1000 })
+    const accessToken = jwt.sign({ email: user.email }, process.env.TOKEN_STRING, { expiresIn: '5min' })
     const refreshToken = user.refreshToken
 
     // set coockies
