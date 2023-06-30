@@ -53,7 +53,7 @@ const Orders = () => {
                     <Typography variant="h1" color={'neutral.main'}>
                         Nezavrsene
                     </Typography>
-                    { orders &&
+                    { orders && articles &&
                     orders.map( e => {
                         if(!e.done)
                         return (<Order key={e._id} order = {e}/>)}
@@ -67,7 +67,7 @@ const Orders = () => {
                     }}
                     elevation={5}>
                     <Typography variant="h1" color={'neutral.main'}>Zavrsene</Typography>
-                    { orders &&
+                    { orders && aricles &&
                         orders.map( e => {
                             if(e.done)
                                 return ( <Order key = {e._id} order={e}/> )
