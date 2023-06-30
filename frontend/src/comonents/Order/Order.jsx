@@ -19,13 +19,13 @@ const Order = ({ order }) => {
 
                     return (
                     <Typography key={i} variant='h6' color={'neutral.main'}>
-                        {article.name} {orderArticle.quantity}
+                        {article && article.name} {orderArticle && orderArticle.quantity}
                     </Typography>
                      )
                 } )
             }
             <Typography color = { 'neutral.main' } variant = {'body2'}>
-                Ukupna cena: { order &&
+                Ukupna cena: { order && order.articles &&
                     order.articles.reduce( (acc, e) => {
                         const price = getArticle( e.articleId ).price
                         return acc+price
