@@ -53,23 +53,6 @@ const ArticlePage = () => {
                 <img src={ article && `${URL}/${article.url}`} alt="" style = {{
                     maxWidth: '80vw',
                 }} />
-                <Box sx ={{
-                    position: 'absolute',
-                    bottom: '-10%',
-                    padding: '1rem 2rem',
-                }}>
-                    <div style={{
-                        position: 'absolute',
-                        inset: '0',
-                        background: 'rgba(0, 0, 0)',
-                        borderRadius: '.3rem',
-                    }}>
-                    </div>
-                    <Typography color={'secondary.main'} sx = {{
-                        position: 'relative',
-                        zIndex: '10',
-                    }}>{ article && article.name }</Typography>
-                </Box>
             </Box>
             <Box sx = {{
                 marginTop: '4rem',

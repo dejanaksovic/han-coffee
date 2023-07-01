@@ -5,7 +5,7 @@ import { useCart } from '../../hooks/useCart';
 import { getCategories } from "../../utilities/categories";
 
 import Article from "../../comonents/Article/Article";
-import { Button, Container, Divider, FormControl, MenuItem, Select, Typography } from '@mui/material';
+import { Button, Container, Divider, FormControl, MenuItem, Select, Typography, InputLabel } from '@mui/material';
 import BottomAppBar from '../../comonents/BottomAppBar/BottomAppBar';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -51,13 +51,17 @@ const Articles = () => {
             navigate('/articles/create')
         } }>Dodaj artikal</Button> : null }
         <FormControl>
+            <InputLabel id = 'category' color="neutral" sx = {{
+                color: 'neutral.main'
+            }}>Kategorija</InputLabel>
             <Select 
                 color="neutral"
-                variant="filled"
+                variant="outlined"
                 labelId="category"
                 label = "Kategorija"
                 sx = {{
-                width: 'fit-content',
+                minWidth: '30ch',
+                maxWidth: 'fit-content',
             }} 
             style = {{
                 color: 'white',
