@@ -6,14 +6,13 @@ import { useGlobalNotificationContext } from "./useGlobalNorificationContext"
 import { useNavigate } from "react-router-dom"
 
 export const useLogin = () => {
-    const [ error, setError ] = useState()
     const [ loading, setLoading ] = useState()
 
     const navigate = useNavigate()
 
     const { login } = useAuthContext()
     const { URL } = useArticleContext()
-    const { setAlert } = useGlobalNotificationContext()
+    const { makeAlert } = useGlobalNotificationContext()
 
     const logIn = async (email, password) => {
         setLoading(true)
@@ -31,23 +30,16 @@ export const useLogin = () => {
             navigate('/articles')
         }
         catch(err) {
-            if(err.response) {
-                setAlert({
-                    severity: 'error',
-                    message: err.response.data.err
-                })
+            if(err.response && err.response.data) {
+                makeAlert('error', `Greška pri logovanju. Greška ${err.response.data.err}`)
             }
             else {
-                console.log(err);
-                setAlert({
-                    severity: 'error',
-                    message: 'Doslo je do greske, proverite vasu internet konekciju i pokusajte ponovo'
-                })
+                makeAlert('error', 'Greška pri komunikaciji sa serverom, proverite Vašu internet konekciju ili se obratite administratoru')
             }
         }
 
         setLoading(false)
     }
 
-    return { error , loading, logIn }
+    return { loading, logIn }
 }

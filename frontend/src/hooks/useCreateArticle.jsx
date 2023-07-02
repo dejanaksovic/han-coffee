@@ -29,15 +29,15 @@ export const useCreateArticle = () => {
             if(res.data.newToken)
                 updateToken(res.data.newToken)
             addArticle(res.data.article)
-            makeAlert( 'success', `Uspesno kreiran artikal ${res.data.article.name}` )
+            makeAlert( 'success', `Uspešno kreiran artikal ${res.data.article.name}` )
         }
 
         catch(err) {
             if(err.response) {
-                makeAlert('error', `Artikal nije kreiran, greska: ${err.response.err}`)
+                makeAlert('error', `Artikal nije kreiran, greška: ${err.response.err}`)
             }
             else {
-                makeAlert('error', 'Greska pri komunikaciji sa serverom, proverite vasu internet konekciju ili se obratite administratoru')
+                makeAlert('error', 'Greška pri komunikaciji sa serverom, proverite Vašu internet konekciju ili se obratite administratoru')
             }
         }
 

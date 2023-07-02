@@ -30,12 +30,12 @@ const Article = ({article, func}) => {
               {article.name}
             </Typography> 
             { user && user.role === "ADMIN" &&
-            <Button variant='contained' color='error' onClick = { (e) => {
+            <Button variant='contained' disabled = { loading } color='error' onClick = { (e) => {
               e.preventDefault()
               e.stopPropagation()
               deleteArticle(article._id)
             } }>
-              Obrisi artikal
+              Obriši artikal
             </Button>
           }
           </Box>

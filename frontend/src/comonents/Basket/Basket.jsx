@@ -38,6 +38,9 @@ const Basket = () => {
                 height: '100%',
                 padding: 3,
                 borderColor: 'secondary.main',
+                display: 'flex',
+                flexDirection: 'column', 
+                gap: '1rem',
                 borderRadius: 'inherit'
             }}
         >
@@ -54,7 +57,7 @@ const Basket = () => {
                 marginTop: '1rem',
             }}> {
                 items.length === 0 ? 
-                "Korpa je prazna, narucite nesto" :
+                "Korpa je prazna, naručite nešto" :
                 "Ukupno:" +  items.reduce( (acc, e) => {
                     return acc + e.article.price * e.quantity
                 }, 0 ) + "din"
@@ -82,7 +85,7 @@ const Basket = () => {
                         emptyBasket()
                     } }
             >
-                Poruci!
+                Poruči!
             </Button>
             }
         </Box>

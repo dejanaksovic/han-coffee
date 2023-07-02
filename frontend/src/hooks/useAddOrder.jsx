@@ -31,15 +31,15 @@ export const useCreateOrder = () => {
             addOrder(res.data)
             if(res.data.newToken)
                 updateToken(res.data.newToken)
-            makeAlert( 'success', `Uspesno poslata porudzbina, broj over porudzbine je ${res.data.order.number}` )
+            makeAlert( 'success', `Uspešno poslata porudžbina, broj ove porudžbine je ${res.data.order.number}` )
         }
 
         catch(err) {
             if(err.response) {
-                makeAlert('error', `Porudzbina nije poslata, greska: ${err.response.err}`)
+                makeAlert('error', `Porudžbina nije poslata, greška: ${err.response.err}`)
             }
             else {
-                makeAlert('error', 'Greska pri komunikaciji sa serverom, proverite vasu internet konekciju ili se obratite administratoru')
+                makeAlert('error', 'Greška pri komunikaciji sa serverom, proverite Vašu internet konekciju ili se obratite administratoru')
             }
         }
         

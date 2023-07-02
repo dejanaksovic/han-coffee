@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useArticleContext } from "./useArticles"
 import { useOrders } from "./useOrders"
 import axios from "axios"
@@ -7,7 +7,6 @@ import { useAuthContext } from "./useAuthContext"
 import { useGlobalNotificationContext } from "./useGlobalNorificationContext"
 
 export const useGetOrders = () => {
-    const [ error ] = useState(null)
     const [loading, setLoading] = useState(false)
     const { makeAlert } = useGlobalNotificationContext()
     const { URL } = useArticleContext()
@@ -17,6 +16,7 @@ export const useGetOrders = () => {
     const { user, updateToken } = useAuthContext()
 
     const getOrders = async () => {
+
         setLoading(true)
         try {
         const res = await axios.get(`${URL}/orders`, {
@@ -31,15 +31,15 @@ export const useGetOrders = () => {
         catch(err) {
             console.log(err)
             if(err.response) {
-                makeAlert('error', `Ne moguci pregled porudzbina, greska ${err.response.err}`)
+                makeAlert('error', `Ne mogući pregled porudžbina, greška ${err.response.err}`)
             }
             else {
-                makeAlert('error', 'Greska pri komunikaciji sa serverom, proverite vasu internet konekciju ili se obratite administratoru')
+                makeAlert('error', 'Greška pri komunikaciji sa serverom, proverite Vašu internet konekciju ili se obratite administratoru')
             }
         }
 
     setLoading(false)
     }
 
-    return { error, loading, getOrders }
+    return { loading, getOrders }
 }

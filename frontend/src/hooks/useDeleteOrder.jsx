@@ -32,7 +32,7 @@ export const useDeleteOrder = () => {
 
         catch(err) {
             if(err.response) {
-                makeAlert('error', `Porudzbina nije poslata, greska: ${err.response.err}`)
+                makeAlert('error', `Porudžbina nije poslata, greška: ${err.response.err}`)
             }
             else {
                 makeAlert('error', 'Greska pri komunikaciji sa serverom, proverite vasu internet konekciju ili se obratite administratoru')

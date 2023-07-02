@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
 
-    const { error, loading, logIn } = useLogin()
+    const { loading, logIn } = useLogin()
 
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()

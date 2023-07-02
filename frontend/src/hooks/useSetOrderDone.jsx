@@ -27,14 +27,14 @@ export const useSetOrderDone = () => {
             setAsDone(id)
             if(res.data.newToken)
                 updateToken(res.data.newToken)
-            makeAlert( 'success', `Porudzbina broj ${res.data.order.number} uspesno zavrsena`)
+            makeAlert( 'success', `Porudžbina broj ${res.data.order.number} uspešno završena`)
         }
         catch(err) {
             if(err.response) {
-                makeAlert('error', `Porudzbina nije zavrsena, greska ${err.response.err}`)
+                makeAlert('error', `Porudžbina nije završena, greška ${err.response.err}`)
             }
             else {
-                makeAlert('error', 'Greska pri komunikaciji sa serverom, proverite vasu internet konekciju ili se obratite administratoru')
+                makeAlert('error', 'Greška pri komunikaciji sa serverom, proverite Vašu internet konekciju ili se obratite administratoru')
             }
         }
 

@@ -20,12 +20,12 @@ export const useDeleteArticles = () => {
                 }
             })
             deleteArticleById(id)
-            makeAlert( 'success', `Artikal ${res.data.article.name} uspesno obrisan` )
+            makeAlert( 'success', `Artikal ${res.data.article.name} uspešno obrisan` )
         }
     
     catch(err) {
         if(err.response) {
-            makeAlert('error', `Artikal nije obrisan, greska: ${err.response.data.err}`)
+            makeAlert('error', `Artikal nije obrisan, greška: ${err.response.data.err}`)
         }
         else {
             makeAlert('error', 'Greska pri komunikaciji sa serverom, proverite vasu internet konekciju ili se obratite administratoru')

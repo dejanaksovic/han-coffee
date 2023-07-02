@@ -12,7 +12,7 @@ const CreateArticleForm = () => {
 
     const [image, setImage] = useState()
 
-    const { error, loading, createArticle } = useCreateArticle()
+    const { loading, createArticle } = useCreateArticle()
 
     return ( 
         <div style={ {marginTop: '100px'} } >

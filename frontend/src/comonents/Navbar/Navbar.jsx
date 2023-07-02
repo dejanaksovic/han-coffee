@@ -1,7 +1,5 @@
 import "./Navbar.css"
 
-import { useState } from 'react';
-import { useAuthContext } from '../../hooks/useAuthContext';
 import { AppBar, Toolbar, Avatar, IconButton} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Menu } from '@mui/icons-material';
@@ -9,14 +7,7 @@ import image from "../../assets/images/han-logo-removebg-preview.png"
 
 const Navbar = ({toggleSideNav}) => {
 
-    const { user } = useAuthContext()
-
-    const [ el, setEl ] = useState(null)
-    const [ open, setOpen ] = useState(false)
-
-    const { logout } = useAuthContext()
-
-    const navigate = useNavigate()
+     const navigate = useNavigate()
 
     return ( <>
         <nav>

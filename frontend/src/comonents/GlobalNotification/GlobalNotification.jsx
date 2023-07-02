@@ -5,7 +5,7 @@ import { Close } from "@mui/icons-material";
 
 const GlobalNotification = () => {
 
-    const { alert, setAlert } = useGlobalNotificationContext()
+    const { alert } = useGlobalNotificationContext()
     const [ open, setOpen ] = useState(false)
 
     useEffect( () => {

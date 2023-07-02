@@ -1,6 +1,6 @@
 import { useArticleContext } from '../../hooks/useArticles';
 import { useSetOrderDone } from '../../hooks/useSetOrderDone';
-import { Button, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useDeleteOrder } from '../../hooks/useDeleteOrder';
 
@@ -12,7 +12,9 @@ const Order = ({ order }) => {
     const { user } = useAuthContext()
 
     return ( 
-        <div className="order-container">
+        <Box sx = {{
+            padding: '1rem',
+        }}>
             {
                 order && order.articles && order.articles.map ( (orderArticle,i) => {
                     const article = getArticle(orderArticle.articleId)
@@ -33,15 +35,15 @@ const Order = ({ order }) => {
                 }
             </Typography>
             <Typography color = {'neutral.main'}>
-                Broj porudzbine: {order.number}
+                Broj porudžbine: {order.number}
             </Typography>
             { !order.done && user && user.role === "WORKER" ? <Button color={'secondary'} variant='contained' onClick={ e => {
                 setDone(order._id)
-            }}>Zavrsi porudzbinu</Button> : null }
+            }}>Označi kao gotovu</Button> : null }
             { order.done && user && user.role === "WORKER" ? <Button color={'error'} variant='contained' onClick={ e => {
                 deleteOrder(order._id)
-            }}>Zavrsi porudzbinu</Button> : null }
-        </div>
+            }}>Završi porudžbinu</Button> : null }
+        </Box>
      );
 }
  

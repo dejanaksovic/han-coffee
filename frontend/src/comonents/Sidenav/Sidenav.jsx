@@ -1,12 +1,11 @@
 import { ArrowRight, Google, Instagram, Place } from "@mui/icons-material";
-import { Box, Button, Divider, Stack, SwipeableDrawer, Typography, IconButton, Link, ButtonGroup, Container } from "@mui/material";
-import { NavLink, redirect, useNavigate } from "react-router-dom";
+import { Box, Button, Divider, Stack, SwipeableDrawer, Typography, IconButton, Link, Container } from "@mui/material";
+import { NavLink, useNavigate } from "react-router-dom";
 import { getGoogleURL } from "../../utilities/getGoogleUrl";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Sidenav = ({ open, toggleOpen }) => {
 
-    const navigate = useNavigate()
     const { user, logout } = useAuthContext()
 
     return ( 
@@ -61,7 +60,7 @@ const Sidenav = ({ open, toggleOpen }) => {
                         }}>
                             <Typography color={'neutral'} fontSize={56} sx = {{
                                 textDecoration:'underline',
-                            }}>Meni</Typography>
+                            }}>PORUČITE</Typography>
                         </NavLink>
                         <NavLink to = {'/'} onClick = {() => {
                             toggleOpen()
@@ -70,16 +69,17 @@ const Sidenav = ({ open, toggleOpen }) => {
                             fontSize={56}
                             sx = {{
                                 textDecoration:'underline',
-                            }}>Pocetna</Typography>
+                            }}>POČETNA</Typography>
                         </NavLink>
                         { user && user.role === "USER" ?
                         <NavLink to={'/orders'} onClick={ () => {
                             toggleOpen()
-                        } }><Typography color={'neutral'}
+                        } }>
+                        <Typography color={'neutral'}
                             fontSize={56}
                             sx = {{
                                 textDecoration:'underline',
-                        }}>Vase porudzbine</Typography>
+                        }}>Vaše porudžbine</Typography>
                         </NavLink> : null }
                     </Box>
                     </Stack>
@@ -118,7 +118,7 @@ const Sidenav = ({ open, toggleOpen }) => {
                             <IconButton>
                                 <Place color={"neutral"}/>
                             </IconButton>
-                                Pronadjite nas
+                                Pronađite nas
                             </Link>
                         </Box>
                         <Box display={'flex'} alignItems={'center'}>

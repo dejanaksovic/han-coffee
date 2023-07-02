@@ -1,31 +1,38 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useGetOrders } from "../../hooks/useGetOrders";
 import { useOrders } from "../../hooks/useOrders";
 
 import Order from "../../comonents/Order/Order";
 import { useGetArticles } from "../../hooks/useGetArticles";
 import { useArticleContext } from "../../hooks/useArticles";
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 
 const Orders = () => {
     let interval = null
     
     const { orders } = useOrders()
-    const { getOrders, loading, error } = useGetOrders()
+    const { getOrders } = useGetOrders()
     const { getArticles } = useGetArticles()
     const { articles } = useArticleContext()
 
     useEffect( () => {
-        getArticles()
+        if(articles.values.length === 0 || articles.expires < Date.now())
+            getArticles()
         getOrders()
     }, [] )
 
     useEffect( () => {
-        if(interval) // FOR DEVELOPMENT, CHECK IF IT NEEDS TO BE REMOVED IN PRODUCTION
-            return
-        interval = setInterval( () => {
-            getOrders()
-        }, 30000 )
+        if(!interval) {
+            console.log("Requesting orders");
+            interval = setInterval( () => {
+                getOrders()
+            }, 30000 )
+        }
+        //Clean up the interval at dismount
+        return () => {
+            if(interval)
+            clearInterval(interval)
+        }
     }, [] )
 
     return ( 
@@ -46,11 +53,12 @@ const Orders = () => {
                 <Paper sx = {{
                     flex: '1',
                     minHeight: '100%',
-                    backgroundColor: 'primary.main'
+                    backgroundColor: 'primary.main',
+                    padding: '1rem',
                 }}
                 elevation={5}>
                     <Typography variant="h1" color={'neutral.main'}>
-                        Nezavrsene
+                        Nezavršene
                     </Typography>
                     { orders && articles &&
                     orders.map( e => {
@@ -65,7 +73,7 @@ const Orders = () => {
                         backgroundColor: 'primary.main'
                     }}
                     elevation={5}>
-                    <Typography variant="h1" color={'neutral.main'}>Zavrsene</Typography>
+                    <Typography variant="h1" color={'neutral.main'}>Završene</Typography>
                     { orders && articles &&
                         orders.map( e => {
                             if(e.done)
