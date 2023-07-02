@@ -16,6 +16,7 @@ const AuthContextProvider = ({children}) => {
         setUser(user)
     }
 
+
     const updateToken = ( token ) => {
         ( user ) => {
             return {...user, token} 
