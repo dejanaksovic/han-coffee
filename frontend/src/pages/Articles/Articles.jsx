@@ -22,12 +22,10 @@ const Articles = () => {
 
     const { addItem } = useCart()
 
-    const fetchdata = async () => {
-        await getArticles()
-    }
-
     useEffect( () => {
-        getArticles()
+        if( articles.values.length === 0 || articles.expires < Date.now() ) {
+            getArticles()
+        }
     }, [] )
 
     return ( 
@@ -76,8 +74,8 @@ const Articles = () => {
         <Divider sx = {{
             color: 'white',
         }}/>
-            {  articles && !filter ? articles.map ( e => (<Article key = { e._id } article={ e } func = { addItem }/>) ) :
-                articles.map( e => (e.category === filter ? <Article key={ e._id } article = { e }/> : null) )
+            {  articles && !filter ? articles.values.map ( e => (<Article key = { e._id } article={ e } func = { addItem }/>) ) :
+                articles.values.map( e => (e.category === filter ? <Article key={ e._id } article = { e }/> : null) )
             }
         <BottomAppBar setMargin={ setResponsiveMargin }/>            
         </Container>

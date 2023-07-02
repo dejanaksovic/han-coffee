@@ -11,16 +11,16 @@ const ArticlePage = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const { addItem } = useCart()
-    const { articles, URL } = useArticleContext()
+    const { getArticle, URL } = useArticleContext()
     const [article, setArticle] = useState(null)
     const [ quantity, setQuantity ] = useState(1)
 
     const [responsiveMargin, setResponsiveMargin] = useState(0)
 
     useEffect( () => {
-        setArticle( articles.find( e => 
-            e._id === id
-        ) )
+        if(!getArticle(id))
+            navigate('/articles')
+        setArticle( getArticle(id) )
     }, [] )
 
     return ( 
