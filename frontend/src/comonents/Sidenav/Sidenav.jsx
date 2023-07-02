@@ -7,7 +7,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 const Sidenav = ({ open, toggleOpen }) => {
 
     const navigate = useNavigate()
-    const { user } = useAuthContext()
+    const { user, logout } = useAuthContext()
 
     return ( 
         <>
@@ -95,7 +95,10 @@ const Sidenav = ({ open, toggleOpen }) => {
                                  Ulogujte se
                                 </Button>
                                 </a> :
-                                null
+                                <Button variant="contained" color="secondary" 
+                                onClick={logout}>
+                                    Odjavite se
+                                </Button>
                             }
                             </Container>
                     <Divider />
