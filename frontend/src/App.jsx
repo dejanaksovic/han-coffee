@@ -61,7 +61,8 @@ const theme = createTheme( {
       main: "#FF9900"
     },
     neutral: {
-      main: '#FFFF'
+      main: '#FFFF',
+      secondary: '#c9c9c9'
     },
   }
  } )
