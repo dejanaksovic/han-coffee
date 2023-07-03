@@ -30,7 +30,7 @@ const Articles = () => {
 
     return ( 
         <Container sx = {{
-            marginTop: `${responsiveMargin ? responsiveMargin + 16 : '10'}px`,
+            marginBottom: `${responsiveMargin ? responsiveMargin : '10'}px`,
             display:'flex',
             flexDirection:'column',
             gap: '2rem',

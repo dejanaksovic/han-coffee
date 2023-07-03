@@ -15,6 +15,7 @@ const MainRouteLayout = () => {
     return ( 
         <Box sx = {{
             backgroundColor: 'primary.main',
+            paddingBottom: '1rem',
             minHeight: '100vh',
         }}
         >   
