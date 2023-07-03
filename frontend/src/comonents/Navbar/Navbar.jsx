@@ -1,5 +1,3 @@
-import "./Navbar.css"
-
 import { AppBar, Toolbar, Avatar, IconButton} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Menu } from '@mui/icons-material';

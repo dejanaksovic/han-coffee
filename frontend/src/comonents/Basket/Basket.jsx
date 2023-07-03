@@ -1,4 +1,3 @@
-import './Basket.css'
 import { useCart } from "../../hooks/useCart";
 import { useCreateOrder } from "../../hooks/useAddOrder";
 import { Button, Drawer, Typography, Box, IconButton } from '@mui/material';

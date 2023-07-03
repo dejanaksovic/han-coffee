@@ -1,4 +1,3 @@
-import './Article.css'
 import { Avatar, Box, Typography, Button } from '@mui/material';
 import { useArticleContext } from '../../hooks/useArticles';
 import { NavLink } from 'react-router-dom';

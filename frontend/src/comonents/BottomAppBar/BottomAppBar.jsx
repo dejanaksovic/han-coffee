@@ -1,7 +1,7 @@
 import { AppBar, Toolbar, IconButton, Badge } from "@mui/material"
 import { ShoppingCart } from "@mui/icons-material"
 import { useCart } from "../../hooks/useCart";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const BottomAppBar = ({setMargin}) => {
 

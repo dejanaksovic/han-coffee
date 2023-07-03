@@ -1,5 +1,3 @@
-import "./MainRouteLayout.css"
-
 import { Outlet } from "react-router-dom";
 import Sidenav from "../comonents/Sidenav/Sidenav";
 import Basket from "../comonents/Basket/Basket";

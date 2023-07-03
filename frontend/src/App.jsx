@@ -1,5 +1,3 @@
-import './App.css'
-
 //MATERIAL UI
 import { ThemeProvider } from '@emotion/react'
 import { createTheme } from '@mui/material'

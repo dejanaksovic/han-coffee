@@ -7,6 +7,7 @@ const Home = () => {
 
     return ( 
     <Container sx = {{
+        marginTop: '.5rem',
         minHeight: '100vh',
         display: 'flex',
         width: 'fit-content',

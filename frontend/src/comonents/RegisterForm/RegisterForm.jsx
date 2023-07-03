@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useRegister } from "../../hooks/useRegister";
-import './RegisterForm.css'
 import Logo from "../../assets/images/han-logo-removebg-preview.png"
 
 const RegisterForm = () => {
@@ -10,7 +9,7 @@ const RegisterForm = () => {
     const [password, setPassword] = useState()
     const [role, setRole] = useState()
 
-    const { error, loading, register } = useRegister()
+    const { loading, register } = useRegister()
 
     return ( 
         <div className="form">
