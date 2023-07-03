@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useGetOrders } from "../../hooks/useGetOrders";
 import { useOrders } from "../../hooks/useOrders";
 
@@ -7,9 +7,13 @@ import { useGetArticles } from "../../hooks/useGetArticles";
 import { useArticleContext } from "../../hooks/useArticles";
 import { Grid, Paper, Typography } from "@mui/material";
 
+import newOrder from "../../assets/sounds/newOrder.wav"
+
 const Orders = () => {
+    const newOrderSound = new Audio(newOrder)
     let interval = null
-    
+    const lastOrder = useRef(null)
+
     const { orders } = useOrders()
     const { getOrders } = useGetOrders()
     const { getArticles } = useGetArticles()
@@ -19,21 +23,29 @@ const Orders = () => {
         if(articles.values.length === 0 || articles.expires < Date.now())
             getArticles()
         getOrders()
+        console.log(orders);
     }, [] )
 
     useEffect( () => {
-        if(!interval) {
-            console.log("Requesting orders");
-            interval = setInterval( () => {
-                getOrders()
-            }, 30000 )
-        }
-        //Clean up the interval at dismount
-        return () => {
-            if(interval)
-            clearInterval(interval)
-        }
+        console.log("Requesting orders");
+        interval = setInterval( () => {
+            getOrders()
+            console.log("Marking a request")
+        }, 30000 )
+
+        return () => { clearInterval(interval) }
     }, [] )
+
+    useEffect( () => {
+        if(orders.length > 0) {
+            if(lastOrder && lastOrder.current !== orders[orders.length - 1]._id) {
+                console.log('new different order');
+                newOrderSound.play()
+            }
+            lastOrder.current = orders[orders.length - 1]._id
+            console.log(lastOrder);
+        }
+    }, [orders] )
 
     return ( 
         <>
