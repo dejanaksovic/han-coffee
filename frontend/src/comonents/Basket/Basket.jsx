@@ -1,10 +1,11 @@
 import './Basket.css'
 import { useCart } from "../../hooks/useCart";
 import { useCreateOrder } from "../../hooks/useAddOrder";
-import { Button, Drawer, Typography, Box } from '@mui/material';
+import { Button, Drawer, Typography, Box, IconButton } from '@mui/material';
 import CartItem from '../CartItem/CartItem';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Close } from '@mui/icons-material';
 
 const Basket = () => {
     const { shown, items, emptyBasket, setShown } = useCart()
@@ -31,7 +32,7 @@ const Basket = () => {
         onClose = { () => {
             setShown(!shown)
         } }
-      >
+      >     
         <Box
             sx = {{
                 border: 10,
@@ -44,6 +45,16 @@ const Basket = () => {
                 borderRadius: 'inherit'
             }}
         >
+        <Box>
+            <IconButton sx = {{
+                display: 'block',
+                marginLeft: 'auto'
+            }} color={'neutral'} onClick = { () => {
+                setShown(false)
+            } }>
+                <Close/>
+            </IconButton>
+        </Box>
             {   items &&
                 items.map ( (e, i) => {
                     return (<div key = { i } >

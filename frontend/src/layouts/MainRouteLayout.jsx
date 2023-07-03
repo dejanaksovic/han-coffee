@@ -8,15 +8,14 @@ import GlobalNotification from "../comonents/GlobalNotification/GlobalNotificati
 import { Box } from "@mui/material"
 import { useState } from "react";
 
-
 const MainRouteLayout = () => {
 
     const [ sideOpen, setSideOpen ] = useState(false)
 
     return ( 
         <Box sx = {{
-            minHeight: '120vh',
-            backgroundColor: 'primary.main'
+            backgroundColor: 'primary.main',
+            minHeight: '100vh',
         }}
         >   
             <Navbar toggleSideNav={() => {

@@ -32,18 +32,25 @@ const ArticlePage = () => {
         }}>
             <Box sx = {{
                 display: 'flex',
-                justifyContent: 'space-between',
                 alignItems: 'center',
                 padding: '0 1rem',
             }}>
-                <Typography color={'neutral.main'} variant="h1">
-                    { article && article.name }
-                </Typography>
-                <IconButton onClick = { e => {
+                <IconButton 
+                    sx = {{
+                        marginRight: 'auto'
+                    }}
+                    onClick = { e => {
                     navigate('/articles')
                 } }>
                     <ArrowBackIos color="neutral"/>
                 </IconButton>
+                <Typography
+                    sx = {{
+                        marginRight: 'auto'
+                    }}
+                    color={'neutral.main'} variant="h1">
+                    { article && article.name }
+                </Typography>
             </Box>
             <Box sx = {{
                 display: 'grid',

@@ -1,6 +1,6 @@
 import { ArrowRight, Google, Instagram, Place } from "@mui/icons-material";
 import { Box, Button, Divider, Stack, SwipeableDrawer, Typography, IconButton, Link, Container } from "@mui/material";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getGoogleURL } from "../../utilities/getGoogleUrl";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
@@ -60,7 +60,7 @@ const Sidenav = ({ open, toggleOpen }) => {
                         }}>
                             <Typography color={'neutral'} fontSize={56} sx = {{
                                 textDecoration:'underline',
-                            }}>PORUČITE</Typography>
+                            }}>Poručite</Typography>
                         </NavLink>
                         <NavLink to = {'/'} onClick = {() => {
                             toggleOpen()
@@ -69,7 +69,7 @@ const Sidenav = ({ open, toggleOpen }) => {
                             fontSize={56}
                             sx = {{
                                 textDecoration:'underline',
-                            }}>POČETNA</Typography>
+                            }}>Početna</Typography>
                         </NavLink>
                         { user && user.role === "USER" ?
                         <NavLink to={'/orders'} onClick={ () => {
@@ -101,7 +101,6 @@ const Sidenav = ({ open, toggleOpen }) => {
                                 </Button>
                             }
                             </Container>
-                    <Divider />
                     <Stack sx = {{
                         padding: '1.25rem',
                         marginTop: 'auto',
