@@ -6,5 +6,6 @@ export const getCategories = () => {
         "KAFE SA UKUSIMA",
         "SEJK",
         "KOLACI",
+        "SOKOVI I HLADNA PICA"
     ]
 }
