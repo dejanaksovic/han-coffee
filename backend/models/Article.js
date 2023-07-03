@@ -5,7 +5,7 @@ const ArticleSchema = mongoose.Schema({
     desc: String,
     price: Number,
     url: String,
-    category: { type: String, enum: ["ESPRESSO", "CEDJENI SOKOVI", "TOPLI NAPICI", "KAFE SA UKUSIMA", "SEJK", "KOLACI"], required: true }
+    category: { type: String, enum: ["ESPRESSO", "CEDJENI SOKOVI", "TOPLI NAPICI", "KAFE SA UKUSIMA", "SEJK", "KOLACI", "SOKOVI I HLADNA PICA"], required: true }
 }, {timestamps: true})
 
 const Article = mongoose.model('Article', ArticleSchema)
