@@ -36,7 +36,6 @@ const Orders = () => {
             if(!orderIds.current)
                 return false
             const lastOrderId = orders[orders.length - 1]._id
-            console.log(orderIds)
                 if(orderIds.current.includes( lastOrderId ))
                     return false
 
@@ -47,7 +46,6 @@ const Orders = () => {
         else if( user.role === "USER" ) {
             if(!orderIds.current)
                 return false
-            console.log(orderIds)
             const lastOrderId = orders[orders.length - 1]._id
                 if(orderIds.current.includes( lastOrderId ))
                     return false
@@ -75,7 +73,6 @@ const Orders = () => {
 
     useEffect( () => {
         if(orders.length > 0) {
-            console.log(user.role, orderIds)
             if(doesSoundPlay()) {
                 newOrderSound.play()
             }
