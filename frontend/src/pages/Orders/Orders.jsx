@@ -12,25 +12,35 @@ import newOrder from "../../assets/sounds/newOrder.wav"
 const Orders = () => {
     const newOrderSound = new Audio(newOrder)
     let interval = null
-    const lastOrder = useRef(null)
+    const orderIds = useRef(null)
 
     const { orders } = useOrders()
     const { getOrders } = useGetOrders()
     const { getArticles } = useGetArticles()
     const { articles } = useArticleContext()
 
+    const newOrderArrived = () => {
+
+        if(!articles || !orders || orders.length === 0)
+            return false
+        if(!orderIds.current)
+            return false
+        const lastOrderId = orders[orders.length - 1]._id
+            if(orderIds.current.includes( lastOrderId ))
+                return false
+
+        return true
+    }
+
     useEffect( () => {
         if(articles.values.length === 0 || articles.expires < Date.now())
             getArticles()
         getOrders()
-        console.log(orders);
     }, [] )
 
     useEffect( () => {
-        console.log("Requesting orders");
         interval = setInterval( () => {
             getOrders()
-            console.log("Marking a request")
         }, 30000 )
 
         return () => { clearInterval(interval) }
@@ -38,12 +48,14 @@ const Orders = () => {
 
     useEffect( () => {
         if(orders.length > 0) {
-            if(lastOrder && lastOrder.current !== orders[orders.length - 1]._id) {
-                console.log('new different order');
+            if(newOrderArrived()) {
                 newOrderSound.play()
             }
-            lastOrder.current = orders[orders.length - 1]._id
-            console.log(lastOrder);
+
+            //If there are orders set current order id's inside a string for new order checking
+            orderIds.current = orders.reduce( (acc, e) => {
+                return acc + e._id
+            }, "") 
         }
     }, [orders] )
 
