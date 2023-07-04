@@ -52,18 +52,6 @@ const Home = () => {
         </CardActions>
     </Card>
 
-        <Button color="secondary" variant="outlined" sx = {{
-            fontSize: '2rem',
-        }}
-        onClick = {() => {
-            navigate('/articles')
-        }}>Porucite za poneti</Button>
-        <Button color="secondary" variant="outlined" sx = {{
-            fontSize: '2rem'
-        }}
-        onClick={() => {
-            navigate('/qr')
-        }}>Pogledajte meni</Button>
     </Container>
         );
 }
