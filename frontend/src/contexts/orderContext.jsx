@@ -22,8 +22,18 @@ const OrderContextProvider = ({ children }) => {
         setOrders( [... orders.filter( e => e._id !== id )] )
     ]
 
+    const getOrdersWidthFlag = ( done ) => {
+        if( !["done", "undone"].includes(done) )
+            throw Error("Orders must be done or undone")
+
+        if ( done === "done" )
+            return orders.filter( e => e.done)
+        if ( done === "undone" )
+            return orders.filter( e => !e.done )
+    }
+
     return ( 
-        <orderContext.Provider value={ {setOrders, addOrder, orders, setAsDone, deleteOrderById} }>
+        <orderContext.Provider value={ {setOrders, addOrder, orders, setAsDone, deleteOrderById, getOrdersWidthFlag} }>
             {children}
         </orderContext.Provider>  
      );
