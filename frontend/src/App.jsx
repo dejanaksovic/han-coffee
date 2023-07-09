@@ -45,10 +45,10 @@ const theme = createTheme( {
       'Aboreto', 'sans-serif'
     ].join(','),
     h1: {
-      fontSize: '36',
+      fontSize: '36px',
     },
     h2: {
-      fontSize: '32',
+      fontSize: '32px',
     },
     span: {
       fontSize: '16px',

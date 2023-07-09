@@ -3,11 +3,17 @@ import koVice from "../../assets/images/ko-vice.jpeg"
 import zaPoneti from "../../assets/images/za-poneti.png"
 import najprodavanija from "../../assets/images/najprodavanija.png"
 import groupCups from "../../assets/images/groupCups.png"
+import amirAginHand from "../../assets/images/amir-agin-han.png"
 
 import { useNavigate } from "react-router-dom";
-import { Container, Box, Typography, Button } from "@mui/material"
+import { Container, Box, Typography, Button, IconButton } from "@mui/material"
+import { Twitter, Instagram, Facebook } from "@mui/icons-material"
 
 const Home = () => {
+
+    const iconStyle = {
+        fontSize: '30px',
+    }
 
     const containerStyle = {
         position: 'relative',
@@ -169,7 +175,10 @@ const Home = () => {
                 textTransform: 'none',
                 fontSize: '18px',
                 backgroundColor: '#f0f0db'
-            }}>Narucite odmah</Button>
+            }} onClick = { () => {
+                navigate('/articles')
+            } }
+            >Narucite odmah</Button>
         </Container>
         <Container sx = {{
             ...containerStyle, backgroundColor: 'primary', gap: '40px',
@@ -191,6 +200,80 @@ const Home = () => {
                 height: '300px',
                 borderRadius: '40px 200px 200px 200px',
             }}/>
+        </Container>
+        <Container sx = {{...containerStyle, backgroundColor: 'secondary.main'}}>
+            <Box>
+                <Typography variant = 'h2' color = "neutral.main" padding = {'0 0 20px 0'}>
+                    AMIR-AGIN HAN
+                </Typography>
+                <Typography color = "neutral.main" fontFamily = {'Nunito'}>
+                    Amir-agin han, smesten je u centru Novog Pazara, predstavlja izuzetan kulturno-istorijski objekat sa 300+ godina bogatom prosloscu
+                </Typography>
+            </Box>
+            <Box sx = {{
+                height: '380px',
+                backgroundImage: `url(${amirAginHand})`,
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'left',
+                margin: '20px 0',
+                justifySelf: 'flex-start',
+            }}/>
+            <Typography fontFamily = {'Nunito'} color = "neutral.main">
+                Ovaj cuveni han simbolizuje duh trgovine i gostoprimstva koji je vekovima bio prisutan na ovim prostorima. Kao deo nase kafeterije, mi ozivljavamo istorijski znacaj Amir-aginog hana i stvaramo
+                jedinstvenu atmosferu koja spaja proslost i sadasnjost, pruzajuci nasim posetiocima autenticno iskustvo.       
+            </Typography>
+        </Container>
+        <Container sx = {{
+            ...containerStyle
+        }}>
+            <Typography color = "secondary.main" variant="h2">
+                CESTO POSTAVLJANA PITANJA
+            </Typography>
+            <Box sx = {{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '23px',
+                marginTop: '40px',
+                justifyContent: 'space-around',
+            }}>
+                <Box>
+                    <Typography fontFamily={'Nunito'} color = {'secondary.main'} fontSize="20px">Radno vreme?</Typography>
+                    <Typography fontFamily={'Nunito'} color = {'secondary.main'}>Radimo svakog dana od 08 do 00</Typography>
+                </Box>
+                <Box>
+                    <Typography fontFamily={'Nunito'} color = {'secondary.main'} fontSize="20px">Dostava?</Typography>
+                    <Typography fontFamily={'Nunito'} color = {'secondary.main'}>Ne vrsimo dostavu ali je moguce naruciti pice za poneti koje ce biti spremo za preuzimanje bez cekanja.</Typography>
+                </Box>
+                <Box>
+                    <Typography fontFamily={'Nunito'} color = {'secondary.main'} fontSize="20px">Moguce rezervacije</Typography>
+                    <Typography fontFamily={'Nunito'} color = {'secondary.main'}>Ne, ne postoji mogucnost rezervacije mesta</Typography>
+                </Box>
+            </Box>
+        </Container>
+        {/* FOOTER */}
+        <Container>
+            <Box sx = {{
+                width: 'fit-content',
+                margin: '0 auto',
+            }}>
+                <IconButton>
+                    <Twitter color = "neutral" sx = {{...iconStyle}}/>
+                </IconButton>
+                <a href = "https://www.instagram.com/hancoffee_novipazar/" target = "_blank">
+                <IconButton>
+                    <Instagram color = "neutral" sx = {{...iconStyle}}/>
+                </IconButton></a>
+                <IconButton>
+                    <Facebook color = "neutral" sx = {{...iconStyle}}/>
+                </IconButton>
+            </Box>
+            <Box sx = {{
+                marginTop: '30px'
+            }}>
+                <Typography fontFamily = {'Nunito'} color = "neutral.main" align = "center">HANCOFFEE © 2023 Sva prava zadrzana</Typography>
+                <Typography fontFamily = {'Nunito'} color = "neutral.secondary" align = "center">Generisano July 8, 2023.</Typography>
+            </Box>
         </Container>
         </>
     );
