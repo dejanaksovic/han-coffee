@@ -17,9 +17,6 @@ const MainRouteLayout = () => {
             minHeight: '100vh',
         }}
         >   
-            <Navbar toggleSideNav={() => {
-                setSideOpen(!sideOpen)
-            }}/>
             <main>                   
                 <Outlet />
                 <Basket/>    

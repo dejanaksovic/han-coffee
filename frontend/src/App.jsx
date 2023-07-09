@@ -33,7 +33,7 @@ const router = createBrowserRouter(
     <Route path='/articles/create' element = { <CreateArticle/> } />
     <Route path='/login' element = { <Login/> } />
     <Route path="/register" element = { <Register/> }/>
-    <Route path='/' element = { <Home/> }/> 
+    <Route path='/' element = { <Home/> }/>
   </Route>
   )
 )
@@ -42,21 +42,28 @@ const router = createBrowserRouter(
 const theme = createTheme( {
   typography: {
     fontFamily:[
-      'Itim', 'cursive'
+      'Aboreto', 'sans-serif'
     ].join(','),
     h1: {
-      fontSize: '32',
+      fontSize: '36',
     },
     h2: {
-      fontSize: '24',
+      fontSize: '32',
+    },
+    span: {
+      fontSize: '16px',
+    },
+    p: {
+      fontSize: '16px',
     }
   } ,
   palette: {
     primary: {
-      main: "#112C19"
+      main: "#0B2E1C",
     },
     secondary: {
-      main: "#FF9900"
+      main: "#C18A2B",
+      muted: '#B08C3D'
     },
     neutral: {
       main: '#FFFF',
