@@ -20,6 +20,7 @@ const Home = () => {
         display: 'flex',
         flexDirection: 'column',
         boxSizing: 'border-box',
+        backgroundColor: 'primary.main'
     }
 
     const starInsideStyle = {
@@ -165,9 +166,9 @@ const Home = () => {
             >Narucite odmah</Button>
         </Container>
         <Container sx = {{
-            ...containerStyle, backgroundColor: 'primary', gap: '40px',
+            ...containerStyle, backgroundColor: 'primary.main', gap: '40px',
         }}>
-            <Box>
+            <Box >
                 <Typography variant = "h2" color = "secondary.main" sx = {{
                     paddingBottom: '20px'
                 }}>REVOLUCIJA KULTURE KAFE ZA PONETI</Typography>
@@ -236,7 +237,7 @@ const Home = () => {
             </Box>
         </Container>
         {/* FOOTER */}
-        <Container>
+        <Container sx = {{backgroundColor: 'primary.main'}}>
             <Box sx = {{
                 width: 'fit-content',
                 margin: '0 auto',

@@ -58,7 +58,8 @@ const ArticlePage = () => {
                 position: 'relative',
             }}>
                 <img src={ article && `${URL}/${article.url}`} alt="" style = {{
-                    maxWidth: '80vw',
+                    maxWidth: '60vw',
+                    maxHeight: '40vh'
                 }} />
             </Box>
             <Box sx = {{

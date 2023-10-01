@@ -26,14 +26,16 @@ import ArticlePage from './pages/ArticlePage/ArticlePage'
 // ROUTER
 const router = createBrowserRouter(
   createRoutesFromElements(
-  <Route element = { <MainRouteLayout/>}>
-    <Route path='/articles' element = { <Articles/> }/>
-    <Route path='/orders' element = { <Orders/> }/>
-    <Route path='/articles/:id' element = {<ArticlePage/>}/>
-    <Route path='/articles/create' element = { <CreateArticle/> } />
-    <Route path='/login' element = { <Login/> } />
-    <Route path="/register" element = { <Register/> }/>
+  <Route>
     <Route path='/' element = { <Home/> }/>
+    <Route element = {<MainRouteLayout/>}>
+      <Route path='/articles' element = { <Articles/> }/>
+      <Route path='/orders' element = { <Orders/> }/>
+      <Route path='/articles/:id' element = {<ArticlePage/>}/>
+      <Route path='/articles/create' element = { <CreateArticle/> } />
+      <Route path='/login' element = { <Login/> } />
+      <Route path="/register" element = { <Register/> }/>
+     </Route>
   </Route>
   )
 )

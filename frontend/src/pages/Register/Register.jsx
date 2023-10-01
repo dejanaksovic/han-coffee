@@ -2,27 +2,32 @@ import { useState, useEffect, useRef } from "react";
 import { Box, Step, Stepper, Typography, Button, StepLabel, StepContent, Input,} from "@mui/material";
 import { Google } from "@mui/icons-material";
 import { useRequestOTP } from "../../hooks/useRequestOTP";
+import { getGoogleURL } from "../../utilities/getGoogleUrl";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [activeStep, setActiveStep] = useState(Number(new URL(document.location).searchParams.get('step') ?? 0))
   const [completed, setCompleted] = useState({});
+  const navigate = useNavigate()
   const { loading, requestOTP } = useRequestOTP()
   const [phoneError, setPhoneError] = useState(null)
   const code = useRef("")
   const [num, setNum] = useState("")
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if(activeStep === 1) {
         setActiveStep(2)
         requestOTP(`+381${num}`, 'create')
         return
     }
-    requestOTP(`+381${num}`, 'check', code.current)
+    const res = await requestOTP(`+381${num}`, 'check', code.current)
+    if(res) 
+      return navigate('/articles')
   }
 
   const handleChange = e => {
     setNum(e.target.value)
-}
+  }
 
   const handleCodeChange = e => {
     code.current = e.target.value
@@ -38,7 +43,7 @@ const Register = () => {
 
   const steps = 
   [
-   {title: "Verifikujte se preko google naloga", content: <Button variant = 'outlined' disabled = {loading} color = 'secondary'><Google/></Button>},
+   {title: "Verifikujte se preko google naloga", content: <a href = {getGoogleURL}><Button variant = 'outlined' disabled = {loading} color = 'secondary'><Google/></Button></a>},
    {title: 'Unesite broj telefona', content:
    <>
    <Box sx = {{width: '100%', display:'flex', alignItems: 'center', gap: '.5rem'}}>

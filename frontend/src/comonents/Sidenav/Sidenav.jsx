@@ -3,11 +3,11 @@ import { Box, Button, Divider, Stack, SwipeableDrawer, Typography, IconButton, L
 import { NavLink } from "react-router-dom";
 import { getGoogleURL } from "../../utilities/getGoogleUrl";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useEffect } from "react";
 
 const Sidenav = ({ open, toggleOpen }) => {
-
     const { user, logout } = useAuthContext()
-
+    
     return ( 
         <>
             <SwipeableDrawer
