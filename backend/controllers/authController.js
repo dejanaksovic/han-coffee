@@ -2,6 +2,7 @@ const { default: axios } = require('axios')
 const User = require('../models/User')
 const qs = require('querystring')
 const jwt = require('jsonwebtoken')
+const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
 
 const googleAuthhander = async(req, res) => {
     const googleApiUrl = 'https://oauth2.googleapis.com/token'
@@ -72,6 +73,74 @@ const googleAuthhander = async(req, res) => {
     res.redirect(`${process.env.CLIENT_URL}?${qs.stringify(valuesToSend)}`);
 }
 
+const twilioAuth = async(req, res) => {
+    // Parametri i potrebne informacije
+    const { num, code } = req.body
+    const { create, check } = req.query
+
+    // Korisnik moze da samo proveri ili generise kod odjednom
+    if((!create && !check) || (create && check)) 
+        return res.status(400).json({
+            message: "Morate da zelite da kreirate ili proverite kod"
+        })
+    // Kreiranje koda
+    if(create) {
+        try {
+            const verification = await client.verify.v2.services(process.env.TWILIO_SERVICE_SID)
+            .verifications
+            .create({to: num, channel: 'sms'})
+            return res.status(200).json({
+                message: "Done",
+            })
+        }
+        catch(err) {
+            console.log(err);
+            return res.status(500).json({
+                message: "Internal server error",
+            })
+        }
+    }
+
+    //Provera koda
+    try {
+        console.log(`${code}`);
+        const verificationCheck = await client.verify.v2.services(process.env.TWILIO_SERVICE_SID)
+            .verificationChecks
+            .create({ to: num, code: `${code}` })
+        console.log(verificationCheck)
+        if(verificationCheck.status === 'approved' ){
+            try {
+                const user = await User.findOne({email: req.userEmail})
+                console.log(user);
+                user.phoneNumber = btoa(num)
+                user.save()
+                return res.status(200).json({
+                    message:"Phone number approved",
+                })
+        }
+        catch(err) {
+            console.log(err);
+            return res.status(500).json({
+                err:"Internal server error"
+            })
+        }}
+
+        return res.status(400).json({
+            err: "Pogresan kod"
+        })
+    }
+
+    catch(err) {
+        console.log("ovde")
+        console.log(err);
+        return res.status(500).json({
+            message: "Internal server error",
+        })
+    }
+}
+
+
 module.exports = {
     googleAuthhander,
+    twilioAuth
 }

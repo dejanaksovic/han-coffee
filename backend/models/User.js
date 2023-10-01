@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
     password: String,
     picture: String,
     refreshToken: String,
+    phoneNumber: String,
 }, {timestamps: true})
 
 const User = mongoose.model('User', userSchema)
