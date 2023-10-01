@@ -15,17 +15,18 @@ const MainRouteLayout = () => {
             backgroundColor: 'primary.main',
             paddingBottom: '1rem',
             minHeight: '100vh',
+            width: '100%',
         }}
         >   
-            <main>    
+            <main >    
                 <Navbar toggleSideNav={() => {
                     setSideOpen(!sideOpen)
                 }}/>
                 <Sidenav open = {sideOpen}
                          toggleOpen={ () => {
                             setSideOpen(!sideOpen)
-                         } }/>               
-                <Outlet />
+                         } }/>            
+                <Outlet />   
                 <Basket/>    
                 <GlobalNotification />
             </main>            

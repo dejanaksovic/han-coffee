@@ -57,7 +57,6 @@ const Home = () => {
                         >NARUCITE ONLINE</Button>
                 <Box sx = {{
                     display: 'grid',
-                    position: 'relative',
                     gap: '2rem',
                     gridTemplateColumns: '1fr 1fr',
                     gridTemplateRows: '1fr 1fr',
@@ -86,18 +85,6 @@ const Home = () => {
                         backgroundColor: 'secondary.main',
                     }}/>
                     {/* DECORATION */}
-                    <Box sx = {{
-                        position: 'absolute',
-                        borderRadius : '100%',
-                        alignSelf: 'center',
-                        justifySelf: 'center',
-                        height: '120%',
-                        width: '70%',
-                        transform: 'rotate(45deg) translateY(5%)',
-                        opacity: '0.2',
-                        zIndex: '0',
-                        border: '1px solid #FFFF'
-                    }}/>
                 </Box>
             </Box>
         {/* START THINGY */}
@@ -105,8 +92,6 @@ const Home = () => {
                     position: 'absolute',
                     right: '0',
                     bottom: '0',
-                    transform: 'translate(50%, 50%)',
-                    marginRight: '20px',
                     marginBottom: '20px',
                     zIndex: '10',
                     height: '10vh',

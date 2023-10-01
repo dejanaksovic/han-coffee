@@ -31,7 +31,7 @@ const Sidenav = ({ open, toggleOpen }) => {
                     }
                 }}
             >
-                <Stack sx = {{
+            <Stack sx = {{
                     minHeight: '100%',
                 }}>
                     <Stack sx = {{
