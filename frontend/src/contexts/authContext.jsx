@@ -10,11 +10,12 @@ const AuthContextProvider = ({children}) => {
 
     const logout = () => {
         setUser(null)
-        //set the default location name
-        location.href = location.href.replace( location.search, "")
 
-        //clearAll cache
+        // clear cache
         localStorage.clear()
+
+        //reload the window
+        window.location = window.location.pathname
     }
 
     const login = (user) => {

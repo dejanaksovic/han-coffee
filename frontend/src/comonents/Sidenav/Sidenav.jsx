@@ -90,9 +90,11 @@ const Sidenav = ({ open, toggleOpen }) => {
                                 gap: '1.5rem',
                             }}>
                             { !user || !user.email ? <a href={getGoogleURL()}>                          
-                                <Button variant = "outlined" color = "secondary">
-                                <Google color="neutral"/>    
-                                 Ulogujte se
+                                <Button color = "secondary" variant = "outlined">
+                                 <IconButton color = 'neutral'>
+                                    <Google sx = {{fontSize: '2.3rem'}} color = 'secondary'/>
+                                 </IconButton>
+                                 <Typography variant = "body1" color = "neutral.main">Ulogujte se</Typography>
                                 </Button>
                                 </a> :
                                 <Button variant="contained" color="secondary" 

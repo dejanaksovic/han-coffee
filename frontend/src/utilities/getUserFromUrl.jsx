@@ -5,6 +5,7 @@ export const getUserFromUrl = () => {
     const refreshToken = items.get('refreshToken') || undefined
     const email = items.get('email') || undefined
     const role = items.get('role') || undefined
+    const phoneNumberVerified = items.get('phoneNumberVerified') || undefined
 
     if(token && refreshToken && email && role)
         return {
@@ -12,6 +13,7 @@ export const getUserFromUrl = () => {
             refreshToken,
             email,
             role,
+            phoneNumberVerified
         }
 
     return null

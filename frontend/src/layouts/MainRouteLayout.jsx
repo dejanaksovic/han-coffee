@@ -17,14 +17,17 @@ const MainRouteLayout = () => {
             minHeight: '100vh',
         }}
         >   
-            <main>                   
-                <Outlet />
-                <Basket/>    
-                <GlobalNotification />
+            <main>    
+                <Navbar toggleSideNav={() => {
+                    setSideOpen(!sideOpen)
+                }}/>
                 <Sidenav open = {sideOpen}
                          toggleOpen={ () => {
                             setSideOpen(!sideOpen)
-                         } }/>
+                         } }/>               
+                <Outlet />
+                <Basket/>    
+                <GlobalNotification />
             </main>            
         </Box>
      );

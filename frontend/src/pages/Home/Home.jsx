@@ -10,7 +10,6 @@ import { Container, Box, Typography, Button, IconButton } from "@mui/material"
 import { Twitter, Instagram, Facebook } from "@mui/icons-material"
 
 const Home = () => {
-
     const iconStyle = {
         fontSize: '30px',
     }
