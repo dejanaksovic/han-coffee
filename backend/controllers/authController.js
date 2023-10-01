@@ -67,10 +67,14 @@ const googleAuthhander = async(req, res) => {
         refreshToken,
         email: user.email,
         role: user.role,
+        phoneNumberVerified: user.phoneNumber ? true : false,
+        step: 1
     }
     
     // Redirect to the frontend
-    res.redirect(`${process.env.CLIENT_URL}?${qs.stringify(valuesToSend)}`);
+    if(user.phoneNumber)
+        return res.redirect(`${process.env.CLIENT_URL}?${qs.stringify(valuesToSend)}`);
+    return res.redirect(`${process.env.CLIENT_URL}/register?${qs.stringify(valuesToSend)}`);
 }
 
 const twilioAuth = async(req, res) => {
@@ -104,11 +108,13 @@ const twilioAuth = async(req, res) => {
     //Provera koda
     try {
         console.log(`${code}`);
+        console.log(`Broj: ${num}`)
         const verificationCheck = await client.verify.v2.services(process.env.TWILIO_SERVICE_SID)
             .verificationChecks
             .create({ to: num, code: `${code}` })
         console.log(verificationCheck)
         if(verificationCheck.status === 'approved' ){
+
             try {
                 const user = await User.findOne({email: req.userEmail})
                 console.log(user);

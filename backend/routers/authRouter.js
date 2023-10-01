@@ -4,7 +4,7 @@ const tokenVerification = require('../middleware/tokenVerification')
 
 const authRouter = express.Router()
 
-authRouter.get('/google', tokenVerification, googleAuthhander)
+authRouter.get('/google', googleAuthhander)
 authRouter.post('/twilio', tokenVerification, twilioAuth)
 
 module.exports = authRouter
