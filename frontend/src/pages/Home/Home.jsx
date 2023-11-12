@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { Container, Box, Typography, Button, IconButton } from "@mui/material"
 import { Twitter, Instagram, Facebook } from "@mui/icons-material"
 
+import { woltURL } from "../../utilities/urlStrings"
+
 const Home = () => {
     const iconStyle = {
         fontSize: '30px',
@@ -53,7 +55,7 @@ const Home = () => {
                             fontSize: '19px'
                         }}
                         onClick = {() => {
-                            navigate('/articles')
+                            window.open(woltURL, '_blank');
                         }}
                         >NARUCITE ONLINE</Button>
                 <Box sx = {{
@@ -161,7 +163,7 @@ const Home = () => {
                 fontSize: '18px',
                 backgroundColor: '#f0f0db'
             }} onClick = { () => {
-                navigate('/articles')
+                window.open(woltURL, '_blank');
             } }
             >Narucite odmah</Button>
         </Container>

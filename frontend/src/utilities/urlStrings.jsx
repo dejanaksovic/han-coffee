@@ -1,0 +1,1 @@
+export const woltURL = 'https://wolt.com/sr/srb/novi-pazar/restaurant/kafeterija-hancoffee?fbclid=PAAabu-0fQUa9SO3h2TE51RFzneTastSApWAZ7FSa1iTSoQnaekrABaXy97yw_aem_AbDGyfKNb1ut7EgwG4lxyFt0SdsFS368w3UFJ4mX5SMawo8X6J0tENOtdifaX0OE_Q0';
